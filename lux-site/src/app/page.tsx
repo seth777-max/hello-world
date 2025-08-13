@@ -1,11 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { loadCatalog } from "@/lib/catalog";
+import { loadCatalog, getProductMinPrice, formatINR } from "@/lib/catalog";
 import ProductCard from "@/components/ProductCard";
-
-function formatINR(amount: number) {
-  return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(amount);
-}
 
 export default async function Home() {
   const products = await loadCatalog();
@@ -33,8 +29,8 @@ export default async function Home() {
           <div className="md:w-1/2 w-full grid grid-cols-2 gap-4">
             {featured.slice(0, 4).map((p) => (
               <div key={p.id} className="aspect-square relative rounded-xl overflow-hidden bg-white/5">
-                {p.images?.[0] && (
-                  <Image src={p.images[0]} alt={p.title} fill className="object-cover" sizes="(max-width:768px) 50vw, 25vw" />
+                {p.images?.[0]?.src && (
+                  <Image src={p.images[0].src} alt={p.title} fill className="object-cover" sizes="(max-width:768px) 50vw, 25vw" />
                 )}
               </div>
             ))}
@@ -53,8 +49,8 @@ export default async function Home() {
               key={p.id}
               href={`/product/${p.handle}`}
               title={p.title}
-              image={p.images?.[0]}
-              price={formatINR(p.price_min)}
+              image={p.images?.[0]?.src}
+              price={formatINR(getProductMinPrice(p))}
             />
           ))}
         </div>

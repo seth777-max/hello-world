@@ -1,11 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import { loadCatalog } from "@/lib/catalog";
+import { loadCatalog, getProductMinPrice, formatINR } from "@/lib/catalog";
 import ProductCard from "@/components/ProductCard";
-
-function formatINR(amount: number) {
-  return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(amount);
-}
 
 export default async function CollectionPage() {
   const products = await loadCatalog();
@@ -25,8 +19,8 @@ export default async function CollectionPage() {
             key={p.id}
             href={`/product/${p.handle}`}
             title={p.title}
-            image={p.images?.[0]}
-            price={formatINR(p.price_min)}
+            image={p.images?.[0]?.src}
+            price={formatINR(getProductMinPrice(p))}
           />
         ))}
       </div>
