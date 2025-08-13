@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { loadCatalog, Product } from "@/lib/catalog";
+import VerticalGallery from "@/components/VerticalGallery";
 
 function formatINR(amount: number) {
   return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(amount);
@@ -13,23 +14,10 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const product = products.find((p) => p.handle === handle);
   if (!product) return notFound();
 
-  const firstImage = product.images?.[0];
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
       <div className="space-y-4">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-white/5">
-          {firstImage && (
-            <Image src={firstImage} alt={product.title} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
-          )}
-        </div>
-        <div className="grid grid-cols-4 gap-3">
-          {product.images?.slice(0, 8).map((src, i) => (
-            <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-white/10">
-              <Image src={src} alt={`${product.title} ${i + 1}`} fill className="object-cover" sizes="(max-width:768px) 25vw, 10vw" />
-            </div>
-          ))}
-        </div>
+        <VerticalGallery images={product.images ?? []} alt={product.title} />
       </div>
 
       <div>

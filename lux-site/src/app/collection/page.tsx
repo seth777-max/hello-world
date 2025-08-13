@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { loadCatalog } from "@/lib/catalog";
+import ProductCard from "@/components/ProductCard";
 
 function formatINR(amount: number) {
   return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(amount);
@@ -20,17 +21,13 @@ export default async function CollectionPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {products.map((p) => (
-          <Link key={p.id} href={`/product/${p.handle}`} className="group">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-white/5">
-              {p.images?.[0] && (
-                <Image src={p.images[0]} alt={p.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
-              )}
-            </div>
-            <div className="mt-3 flex items-center justify-between">
-              <p className="text-sm tracking-wide">{p.title}</p>
-              <span className="text-sm text-white/70">{formatINR(p.price_min)}</span>
-            </div>
-          </Link>
+          <ProductCard
+            key={p.id}
+            href={`/product/${p.handle}`}
+            title={p.title}
+            image={p.images?.[0]}
+            price={formatINR(p.price_min)}
+          />
         ))}
       </div>
     </div>
