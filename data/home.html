@@ -1,0 +1,1950 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+  <head>
+    <!-- Gokwik theme code start -->
+  <link rel="dns-prefetch" href="https://pdp.gokwik.co/">
+  <link rel="dns-prefetch" href="https://api.gokwik.co">
+    
+
+
+  <script>
+    window.gaTag = {ga4: "G-PCP4CZ9D2Q"}
+    window.merchantInfo  = {
+            mid: "19sbz67iqbkk",
+            environment: "production",
+            type: "merchantInfo",
+      		storeId: "76611879198",
+      		fbpixel: "224782513983979",
+          }
+    var productFormSelector = '';
+    var cart = {"note":null,"attributes":{},"original_total_price":0,"total_price":0,"total_discount":0,"total_weight":0.0,"item_count":0,"items":[],"requires_shipping":false,"currency":"INR","items_subtotal_price":0,"cart_level_discount_applications":[],"checkout_charge_amount":0}
+    var templateName = 'index'
+  </script>
+
+  <script src="https://pdp.gokwik.co/merchant-integration/build/merchant.integration.js?v4" defer></script>
+
+  <script>
+    if ('$' && '$' !== 'undefined') {
+        const script = document.createElement('script');
+        script.src = "https://www.googletagmanager.com/gtag/js?id="+ window.gaTag.ga4;
+        script.defer = true;
+        document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', window.gaTag.ga4 ,{ 'groups': 'GA4','debug_mode':true });
+    }
+  </script>
+
+  <script>
+    window.addEventListener('gokwikLoaded', e => {
+    var buyNowButton = document.getElementById('gokwik-buy-now');
+if (buyNowButton) {
+    buyNowButton.disabled = false;
+    buyNowButton.classList.remove('disabled');
+}
+      var gokwikCheckoutButtons = document.querySelectorAll('.gokwik-checkout button');
+gokwikCheckoutButtons.forEach(function(button) {
+    button.disabled = false;
+    button.classList.remove('disabled');
+});
+    //Do Not Touch This Line
+    let clicked = false;
+    let gokwikAdsID = "";
+    const gokwikCheckoutEnable = (arrayOfElement) => {
+      if (arrayOfElement.length === 0) return null;
+      if (arrayOfElement.length > 1) {
+        arrayOfElement.forEach(data => {
+          if (data) {
+            let targetElement = document.querySelectorAll(data);
+            if (targetElement.length >= 1) {
+              targetElement.forEach(element => {
+                
+                element.addEventListener("click", () => {
+                  if (!clicked && gokwikAdsID) {
+                    clicked = true;
+                    gtag('event', 'conversion', {
+                      'send_to': gokwikAdsID.toString().trim(),
+                      'value': 0.0,
+                      'currency': '',
+                      'transaction_id': ''
+                    });
+                  }
+                });
+              });
+            }
+          }
+        });
+      }
+    };
+    gokwikCheckoutEnable(["#gokwik-buy-now",".gokwik-checkout button"])
+    gokwikSdk.on('modal_closed', ()=>{
+        clicked = false;
+    })
+
+    const targetElement = document.querySelector("body");
+      function debounce(func, delay) {
+        let timeoutId;
+        return function () {
+          const context = this;
+          const args = arguments;
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(function () {
+            func.apply(context, args);
+          }, delay);
+        };
+      }
+
+      const observer = new MutationObserver(() => {
+     const addToCartButton = document.querySelector(".ProductForm__AddToCart.Button.Button--secondary.Button--full");
+const gokwikBuyNowButton = document.getElementById('gokwik-buy-now');
+
+if (addToCartButton && addToCartButton.disabled) {
+    gokwikBuyNowButton?.setAttribute('disabled', 'disabled');
+} else {
+    gokwikBuyNowButton?.removeAttribute('disabled');
+}
+        debouncedMyTimer();
+      });
+
+      const debouncedMyTimer = debounce(() => {
+        observer.disconnect();
+        //Do Not Touch this function
+    
+        gokwikCheckoutEnable(["#gokwik-buy-now",".gokwik-checkout button"])
+        var gokwikCheckoutButtons = document.querySelectorAll('.gokwik-checkout button');
+gokwikCheckoutButtons.forEach(function(button) {
+    button.disabled = false;
+    button.classList.remove('disabled');
+});
+        observer.observe(targetElement, { childList: true, subtree: true });
+      }, 700);
+
+      const config = { childList: true, subtree: true };
+      observer.observe(targetElement, config);
+    });
+  </script>
+
+
+
+<style>
+  
+  .gokwik-checkout {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: end;
+    margin-bottom: 10px;
+  }
+  .gokwik-checkout button {
+    max-width:100%;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #403d3d;
+    position: relative;
+    cursor: pointer;
+    border-radius: 0px;
+    height:42px;
+    padding: 14px 18px;
+    font-family: "Amiro", sans-serif;
+  }
+  #gokwik-buy-now.disabled, .gokwik-disabled{
+    opacity:0.5;
+    cursor: not-allowed;
+    }
+    .gokwik-checkout button:focus {
+    outline: none;
+  }
+  .gokwik-checkout button > span {
+    display: flex;
+  }
+  .gokwik-checkout button > span.btn-text {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    align-items: flex-start;
+  }
+  .gokwik-checkout button > span.btn-text > span:last-child {
+  	padding-top: 2px;
+      font-size: 10px;
+  }
+  .gokwik-checkout button > span.btn-text > span:first-child {
+     font-size: 12px;
+    letter-spacing: 0.2em;
+    font-weight:400;
+    text-transform: uppercase;
+  }
+  .gokwik-checkout button > span.pay-opt-icon img:first-child {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  /*   Additional */
+  .gokwik-checkout button.disabled{
+    opacity:0.5;
+    cursor: not-allowed;
+    }
+  .gokwik-checkout button.disabled .addloadr#btn-loader{
+     display: flex!important;
+  }
+    #gokwik-buy-now.disabled .addloadr#btn-loader{
+     display: flex!important;
+  }
+      #gokwik-buy-now:disabled{
+     cursor: not-allowed;
+  }
+@media (min-width:768px){
+  .Cart__Footer .gokwik-checkout button{
+    width: 70%;
+  }
+}
+
+
+
+  
+
+  
+   #gokwik-buy-now {
+     background: #403d3d;
+     width: 100%;
+     color: #FFFFFF;
+     cursor: pointer;
+     line-height: 1;
+     border: none;
+     font-size: 12px;
+      margin-top: 10px;
+     position:relative;
+     height: 46px;
+     padding: 14px 28px;
+     letter-spacing: 0.2em;
+    font-family: "Amiro", sans-serif;
+     font-weight: 400;
+     text-transform: uppercase;
+   }
+
+
+  
+  /* Loader CSS */
+    #btn-loader{
+      display: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+      background:#403d3d;
+      border-radius:10px;
+
+    }
+
+  .cir-loader,
+  .cir-loader:after {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+  }
+  .cir-loader {
+    margin: 6px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 0.5em solid rgba(255, 255, 255, 0.2);
+    border-right: 0.5em solid rgba(255, 255, 255, 0.2);
+    border-bottom: 0.5em solid rgba(255, 255, 255, 0.2);
+    border-left: 0.5em solid #ffffff;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+  }
+  @-webkit-keyframes load8 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes load8 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+</style>
+ <!-- Gokwik theme code End -->
+
+
+    <meta charset="utf-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="">
+
+    <title>
+      Lemonaed - House of Vintage Streetwear
+    </title><link rel="canonical" href="https://lemonaed.in/"><link rel="shortcut icon" href="//lemonaed.in/cdn/shop/files/lemonaed_logo_96x.jpg?v=1749055460" type="image/png"><meta property="og:type" content="website">
+  <meta property="og:title" content="Lemonaed - House of Vintage Streetwear"><meta property="og:url" content="https://lemonaed.in/">
+<meta property="og:site_name" content="Lemonaed "><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Lemonaed - House of Vintage Streetwear">
+  <meta name="twitter:description" content="Lemonaed - House of Vintage Streetwear">
+    <style>
+  @font-face {
+  font-family: Arimo;
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+  src: url("//lemonaed.in/cdn/fonts/arimo/arimo_n4.a7efb558ca22d2002248bbe6f302a98edee38e35.woff2?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=3ec4f81dfcf33ca338a567fb33009b8fdf01da0b50fb64eb93bed4523ba62308") format("woff2"),
+       url("//lemonaed.in/cdn/fonts/arimo/arimo_n4.0da809f7d1d5ede2a73be7094ac00741efdb6387.woff?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=7271cc184d14297786bf2a465fac7e40370c5142559b5efa7c8e37408146e3a4") format("woff");
+}
+
+  @font-face {
+  font-family: Arimo;
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+  src: url("//lemonaed.in/cdn/fonts/arimo/arimo_n4.a7efb558ca22d2002248bbe6f302a98edee38e35.woff2?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=3ec4f81dfcf33ca338a567fb33009b8fdf01da0b50fb64eb93bed4523ba62308") format("woff2"),
+       url("//lemonaed.in/cdn/fonts/arimo/arimo_n4.0da809f7d1d5ede2a73be7094ac00741efdb6387.woff?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=7271cc184d14297786bf2a465fac7e40370c5142559b5efa7c8e37408146e3a4") format("woff");
+}
+
+
+  @font-face {
+  font-family: Arimo;
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+  src: url("//lemonaed.in/cdn/fonts/arimo/arimo_n7.1d2d0638e6a1228d86beb0e10006e3280ccb2d04.woff2?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=f3665d88d94e2a83cf11d70136f07ed6377e9df870cf167c4a0d8621ef6bcfff") format("woff2"),
+       url("//lemonaed.in/cdn/fonts/arimo/arimo_n7.f4b9139e8eac4a17b38b8707044c20f54c3be479.woff?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=d149884bad4ff6eebae54085742dc105fe3373803867a1119077a162aaad436b") format("woff");
+}
+
+  @font-face {
+  font-family: Arimo;
+  font-weight: 400;
+  font-style: italic;
+  font-display: fallback;
+  src: url("//lemonaed.in/cdn/fonts/arimo/arimo_i4.438ddb21a1b98c7230698d70dc1a21df235701b2.woff2?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=b4209bb8dd4c168dc13325f5ec4bf5fda9412e5f5ceaae4e0ca351594f8c128f") format("woff2"),
+       url("//lemonaed.in/cdn/fonts/arimo/arimo_i4.0e1908a0dc1ec32fabb5a03a0c9ee2083f82e3d7.woff?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=4fa61e4958cdf6a7a1b7baf3e770c0ae7f3b2d10560f39ba7751e343beebe6a8") format("woff");
+}
+
+  @font-face {
+  font-family: Arimo;
+  font-weight: 700;
+  font-style: italic;
+  font-display: fallback;
+  src: url("//lemonaed.in/cdn/fonts/arimo/arimo_i7.b9f09537c29041ec8d51f8cdb7c9b8e4f1f82cb1.woff2?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=14405e3d1a75ea20a6b62f28bcdc63d32d29975f0d82add36df39714b1263657") format("woff2"),
+       url("//lemonaed.in/cdn/fonts/arimo/arimo_i7.ec659fc855f754fd0b1bd052e606bba1058f73da.woff?h1=bGVtb25hZWQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=bGVtb25hZWQuaW4&hmac=67f5f1555ef24cb3ca61b33d799e84125586840256667ad3d090160cc8f7e285") format("woff");
+}
+
+
+  :root {
+    --heading-font-family : Arimo, sans-serif;
+    --heading-font-weight : 400;
+    --heading-font-style  : normal;
+
+    --text-font-family : Arimo, sans-serif;
+    --text-font-weight : 400;
+    --text-font-style  : normal;
+
+    --base-text-font-size   : 14px;
+    --default-text-font-size: 14px;--background          : #ffffff;
+    --background-rgb      : 255, 255, 255;
+    --light-background    : #1c1b1b;
+    --light-background-rgb: 28, 27, 27;
+    --heading-color       : #000000;
+    --text-color          : #000000;
+    --text-color-rgb      : 0, 0, 0;
+    --text-color-light    : #c5c5c5;
+    --text-color-light-rgb: 197, 197, 197;
+    --link-color          : #6a6a6a;
+    --link-color-rgb      : 106, 106, 106;
+    --border-color        : #d9d9d9;
+    --border-color-rgb    : 217, 217, 217;
+
+    --button-background    : #403d3d;
+    --button-background-rgb: 64, 61, 61;
+    --button-text-color    : #ffffff;
+
+    --header-background       : #ffffff;
+    --header-heading-color    : #000000;
+    --header-light-text-color : #c5c5c5;
+    --header-border-color     : #d9d9d9;
+
+    --footer-background    : #1c1b1b;
+    --footer-text-color    : #c5c5c5;
+    --footer-heading-color : #efefef;
+    --footer-border-color  : #353535;
+
+    --navigation-background      : #ffffff;
+    --navigation-background-rgb  : 255, 255, 255;
+    --navigation-text-color      : #000000;
+    --navigation-text-color-light: rgba(0, 0, 0, 0.5);
+    --navigation-border-color    : rgba(0, 0, 0, 0.25);
+
+    --newsletter-popup-background     : #1c1b1b;
+    --newsletter-popup-text-color     : #ffffff;
+    --newsletter-popup-text-color-rgb : 255, 255, 255;
+
+    --secondary-elements-background       : #1c1b1b;
+    --secondary-elements-background-rgb   : 28, 27, 27;
+    --secondary-elements-text-color       : #ffffff;
+    --secondary-elements-text-color-light : rgba(255, 255, 255, 0.5);
+    --secondary-elements-border-color     : rgba(255, 255, 255, 0.25);
+
+    --product-sale-price-color    : #f94c43;
+    --product-sale-price-color-rgb: 249, 76, 67;
+    --product-star-rating: #f6a429;
+
+    /* Shopify related variables */
+    --payment-terms-background-color: #ffffff;
+
+    /* Products */
+
+    --horizontal-spacing-four-products-per-row: 60px;
+        --horizontal-spacing-two-products-per-row : 60px;
+
+    --vertical-spacing-four-products-per-row: 60px;
+        --vertical-spacing-two-products-per-row : 75px;
+
+    /* Animation */
+    --drawer-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --header-base-height: 80px; /* We set a default for browsers that do not support CSS variables */
+
+    /* Cursors */
+    --cursor-zoom-in-svg    : url(//lemonaed.in/cdn/shop/t/26/assets/cursor-zoom-in.svg?v=55549579909511012721751008847);
+    --cursor-zoom-in-2x-svg : url(//lemonaed.in/cdn/shop/t/26/assets/cursor-zoom-in-2x.svg?v=41858463171031241821751008847);
+  }
+</style>
+
+<script>
+  // IE11 does not have support for CSS variables, so we have to polyfill them
+  if (!(((window || {}).CSS || {}).supports && window.CSS.supports('(--a: 0)'))) {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2';
+    script.onload = function() {
+      cssVars({});
+    };
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+</script>
+
+    <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/76611879198/digital_wallets/dialog">
+<script async="async" src="/checkouts/internal/preloads.js?locale=en-IN"></script>
+<script id="shopify-features" type="application/json">{"accessToken":"50d9ad7278f98ba0da724b3eb77a659f","betas":["rich-media-storefront-analytics"],"domain":"lemonaed.in","predictiveSearch":true,"shopId":76611879198,"locale":"en"}</script>
+<script>var Shopify = Shopify || {};
+Shopify.shop = "lemonaed.myshopify.com";
+Shopify.locale = "en";
+Shopify.currency = {"active":"INR","rate":"1.0"};
+Shopify.country = "IN";
+Shopify.theme = {"name":"Copy of Gokwik Theme 11th Feb 2025","id":179454509342,"schema_name":"Prestige","schema_version":"5.4.3","theme_store_id":null,"role":"main"};
+Shopify.theme.handle = "null";
+Shopify.theme.style = {"id":null,"handle":null};
+Shopify.cdnHost = "lemonaed.in/cdn";
+Shopify.routes = Shopify.routes || {};
+Shopify.routes.root = "/";</script>
+<script type="module">!function(o){(o.Shopify=o.Shopify||{}).modules=!0}(window);</script>
+<script>!function(o){function n(){var o=[];function n(){o.push(Array.prototype.slice.apply(arguments))}return n.q=o,n}var t=o.Shopify=o.Shopify||{};t.loadFeatures=n(),t.autoloadFeatures=n()}(window);</script>
+<script id="shop-js-analytics" type="application/json">{"pageType":"index"}</script>
+<script>(function() {
+  var isLoaded = false;
+  function asyncLoad() {
+    if (isLoaded) return;
+    isLoaded = true;
+    var urls = ["https:\/\/cdn2.ryviu.com\/v\/static\/js\/app.js?shop=lemonaed.myshopify.com","https:\/\/sp-micro-next.b-cdn.net\/sp-micro.umd.js?shop=lemonaed.myshopify.com"];
+    for (var i = 0; i < urls.length; i++) {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = urls[i];
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  };
+  if(window.attachEvent) {
+    window.attachEvent('onload', asyncLoad);
+  } else {
+    window.addEventListener('load', asyncLoad, false);
+  }
+})();</script>
+<script id="__st">var __st={"a":76611879198,"offset":19800,"reqid":"f16ddd4c-6d44-4c84-9c52-ded9394d27c6-1755091082","pageurl":"lemonaed.in\/","u":"505a9a60b0fa","p":"home"};</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script id="captcha-bootstrap">!function(){'use strict';const t='contact',e='account',n='new_comment',o=[[t,t],['blogs',n],['comments',n],[t,'customer']],c=[[e,'customer_login'],[e,'guest_login'],[e,'recover_customer_password'],[e,'create_customer']],r=t=>t.map((([t,e])=>`form[action*='/${t}']:not([data-nocaptcha='true']) input[name='form_type'][value='${e}']`)).join(','),a=t=>()=>t?[...document.querySelectorAll(t)].map((t=>t.form)):[];function s(){const t=[...o],e=r(t);return a(e)}const i='password',u='form_key',d=['recaptcha-v3-token','g-recaptcha-response','h-captcha-response',i],f=()=>{try{return window.sessionStorage}catch{return}},m='__shopify_v',_=t=>t.elements[u];function p(t,e,n=!1){try{const o=window.sessionStorage,c=JSON.parse(o.getItem(e)),{data:r}=function(t){const{data:e,action:n}=t;return t[m]||n?{data:e,action:n}:{data:t,action:n}}(c);for(const[e,n]of Object.entries(r))t.elements[e]&&(t.elements[e].value=n);n&&o.removeItem(e)}catch(o){console.error('form repopulation failed',{error:o})}}const l='form_type',E='cptcha';function T(t){t.dataset[E]=!0}const w=window,h=w.document,L='Shopify',v='ce_forms',y='captcha';let A=!1;((t,e)=>{const n=(g='f06e6c50-85a8-45c8-87d0-21a2b65856fe',I='https://cdn.shopify.com/shopifycloud/storefront-forms-hcaptcha/ce_storefront_forms_captcha_hcaptcha.v1.5.2.iife.js',D={infoText:'Protected by hCaptcha',privacyText:'Privacy',termsText:'Terms'},(t,e,n)=>{const o=w[L][v],c=o.bindForm;if(c)return c(t,g,e,D).then(n);var r;o.q.push([[t,g,e,D],n]),r=I,A||(h.body.append(Object.assign(h.createElement('script'),{id:'captcha-provider',async:!0,src:r})),A=!0)});var g,I,D;w[L]=w[L]||{},w[L][v]=w[L][v]||{},w[L][v].q=[],w[L][y]=w[L][y]||{},w[L][y].protect=function(t,e){n(t,void 0,e),T(t)},Object.freeze(w[L][y]),function(t,e,n,w,h,L){const[v,y,A,g]=function(t,e,n){const i=e?o:[],u=t?c:[],d=[...i,...u],f=r(d),m=r(i),_=r(d.filter((([t,e])=>n.includes(e))));return[a(f),a(m),a(_),s()]}(w,h,L),I=t=>{const e=t.target;return e instanceof HTMLFormElement?e:e&&e.form},D=t=>v().includes(t);t.addEventListener('submit',(t=>{const e=I(t);if(!e)return;const n=D(e)&&!e.dataset.hcaptchaBound&&!e.dataset.recaptchaBound,o=_(e),c=g().includes(e)&&(!o||!o.value);(n||c)&&t.preventDefault(),c&&!n&&(function(t){try{if(!f())return;!function(t){const e=f();if(!e)return;const n=_(t);if(!n)return;const o=n.value;o&&e.removeItem(o)}(t);const e=Array.from(Array(32),(()=>Math.random().toString(36)[2])).join('');!function(t,e){_(t)||t.append(Object.assign(document.createElement('input'),{type:'hidden',name:u})),t.elements[u].value=e}(t,e),function(t,e){const n=f();if(!n)return;const o=[...t.querySelectorAll(`input[type='${i}']`)].map((({name:t})=>t)),c=[...d,...o],r={};for(const[a,s]of new FormData(t).entries())c.includes(a)||(r[a]=s);n.setItem(e,JSON.stringify({[m]:1,action:t.action,data:r}))}(t,e)}catch(e){console.error('failed to persist form',e)}}(e),e.submit())}));const S=(t,e)=>{t&&!t.dataset[E]&&(n(t,e.some((e=>e===t))),T(t))};for(const o of['focusin','change'])t.addEventListener(o,(t=>{const e=I(t);D(e)&&S(e,y())}));const B=e.get('form_key'),M=e.get(l),P=B&&M;t.addEventListener('DOMContentLoaded',(()=>{const t=y();if(P)for(const e of t)e.elements[l].value===M&&p(e,B);[...new Set([...A(),...v().filter((t=>'true'===t.dataset.shopifyCaptcha))])].forEach((e=>S(e,t)))}))}(h,new URLSearchParams(w.location.search),n,t,e,['guest_login'])})(!0,!0)}();</script>
+<script integrity="sha256-52AcMU7V7pcBOXWImdc/TAGTFKeNjmkeM1Pvks/DTgc=" data-source-attribution="shopify.loadfeatures" defer="defer" src="//lemonaed.in/cdn/shopifycloud/storefront/assets/storefront/load_feature-81c60534.js" crossorigin="anonymous"></script>
+<script data-source-attribution="shopify.dynamic_checkout.dynamic.init">var Shopify=Shopify||{};Shopify.PaymentButton=Shopify.PaymentButton||{isStorefrontPortableWallets:!0,init:function(){window.Shopify.PaymentButton.init=function(){};var t=document.createElement("script");t.src="https://lemonaed.in/cdn/shopifycloud/portable-wallets/latest/portable-wallets.en.js",t.type="module",document.head.appendChild(t)}};
+</script>
+<script data-source-attribution="shopify.dynamic_checkout.buyer_consent">
+  function portableWalletsHideBuyerConsent(e){var t=document.getElementById("shopify-buyer-consent"),n=document.getElementById("shopify-subscription-policy-button");t&&n&&(t.classList.add("hidden"),t.setAttribute("aria-hidden","true"),n.removeEventListener("click",e))}function portableWalletsShowBuyerConsent(e){var t=document.getElementById("shopify-buyer-consent"),n=document.getElementById("shopify-subscription-policy-button");t&&n&&(t.classList.remove("hidden"),t.removeAttribute("aria-hidden"),n.addEventListener("click",e))}window.Shopify?.PaymentButton&&(window.Shopify.PaymentButton.hideBuyerConsent=portableWalletsHideBuyerConsent,window.Shopify.PaymentButton.showBuyerConsent=portableWalletsShowBuyerConsent);
+</script>
+<script data-source-attribution="shopify.dynamic_checkout.cart.bootstrap">document.addEventListener("DOMContentLoaded",(function(){function t(){return document.querySelector("shopify-accelerated-checkout-cart, shopify-accelerated-checkout")}if(t())Shopify.PaymentButton.init();else{new MutationObserver((function(e,n){t()&&(Shopify.PaymentButton.init(),n.disconnect())})).observe(document.body,{childList:!0,subtree:!0})}}));
+</script>
+
+<script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
+
+    <link rel="stylesheet" href="//lemonaed.in/cdn/shop/t/26/assets/theme.css?v=15568542022018037761752482731">
+
+    <script>// This allows to expose several variables to the global scope, to be used in scripts
+      window.theme = {
+        pageType: "index",
+        moneyFormat: "\u003cspan class=money\u003eRs. {{amount_no_decimals}}\u003c\/span\u003e",
+        moneyWithCurrencyFormat: "\u003cspan class=money\u003eRs. {{amount_no_decimals}}\u003c\/span\u003e",
+        currencyCodeEnabled: false,
+        productImageSize: "natural",
+        searchMode: "product,article",
+        showPageTransition: false,
+        showElementStaggering: true,
+        showImageZooming: true
+      };
+
+      window.routes = {
+        rootUrl: "\/",
+        rootUrlWithoutSlash: '',
+        cartUrl: "\/cart",
+        cartAddUrl: "\/cart\/add",
+        cartChangeUrl: "\/cart\/change",
+        searchUrl: "\/search",
+        productRecommendationsUrl: "\/recommendations\/products"
+      };
+
+      window.languages = {
+        cartAddNote: "Add Order Note",
+        cartEditNote: "Edit Order Note",
+        productImageLoadingError: "This image could not be loaded. Please try to reload the page.",
+        productFormAddToCart: "Add to cart",
+        productFormUnavailable: "Unavailable",
+        productFormSoldOut: "Sold Out",
+        shippingEstimatorOneResult: "1 option available:",
+        shippingEstimatorMoreResults: "{{count}} options available:",
+        shippingEstimatorNoResults: "No shipping could be found"
+      };
+
+      window.lazySizesConfig = {
+        loadHidden: false,
+        hFac: 0.5,
+        expFactor: 2,
+        ricTimeout: 150,
+        lazyClass: 'Image--lazyLoad',
+        loadingClass: 'Image--lazyLoading',
+        loadedClass: 'Image--lazyLoaded'
+      };
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      document.documentElement.style.setProperty('--window-height', window.innerHeight + 'px');
+
+      // We do a quick detection of some features (we could use Modernizr but for so little...)
+      (function() {
+        document.documentElement.className += ((window.CSS && window.CSS.supports('(position: sticky) or (position: -webkit-sticky)')) ? ' supports-sticky' : ' no-supports-sticky');
+        document.documentElement.className += (window.matchMedia('(-moz-touch-enabled: 1), (hover: none)')).matches ? ' no-supports-hover' : ' supports-hover';
+      }());
+
+      
+    </script>
+
+    <script src="//lemonaed.in/cdn/shop/t/26/assets/lazysizes.min.js?v=174358363404432586981751008847" async></script><script src="//lemonaed.in/cdn/shop/t/26/assets/libs.min.js?v=26178543184394469741751008847" defer></script>
+    <script src="//lemonaed.in/cdn/shop/t/26/assets/theme.js?v=69766538163165777771751008847" defer></script>
+    <script src="//lemonaed.in/cdn/shop/t/26/assets/custom.js?v=183944157590872491501751008847" defer></script>
+
+    <script>
+      (function () {
+        window.onpageshow = function() {
+          if (window.theme.showPageTransition) {
+            var pageTransition = document.querySelector('.PageTransition');
+
+            if (pageTransition) {
+              pageTransition.style.visibility = 'visible';
+              pageTransition.style.opacity = '0';
+            }
+          }
+
+          // When the page is loaded from the cache, we have to reload the cart content
+          document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+            bubbles: true
+          }));
+        };
+      })();
+    </script>
+
+    
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://lemonaed.in"
+    }]
+  }
+  </script>
+
+  <style type='text/css'>
+  .baCountry{width:30px;height:20px;display:inline-block;vertical-align:middle;margin-right:6px;background-size:30px!important;border-radius:4px;background-repeat:no-repeat}
+  .baCountry-traditional .baCountry{background-image:url(https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/ba-flags.png?=14261939516959647149);height:19px!important}
+  .baCountry-modern .baCountry{background-image:url(https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/ba-flags.png?=14261939516959647149)}
+  .baCountry-NO-FLAG{background-position:0 0}.baCountry-AD{background-position:0 -20px}.baCountry-AED{background-position:0 -40px}.baCountry-AFN{background-position:0 -60px}.baCountry-AG{background-position:0 -80px}.baCountry-AI{background-position:0 -100px}.baCountry-ALL{background-position:0 -120px}.baCountry-AMD{background-position:0 -140px}.baCountry-AOA{background-position:0 -160px}.baCountry-ARS{background-position:0 -180px}.baCountry-AS{background-position:0 -200px}.baCountry-AT{background-position:0 -220px}.baCountry-AUD{background-position:0 -240px}.baCountry-AWG{background-position:0 -260px}.baCountry-AZN{background-position:0 -280px}.baCountry-BAM{background-position:0 -300px}.baCountry-BBD{background-position:0 -320px}.baCountry-BDT{background-position:0 -340px}.baCountry-BE{background-position:0 -360px}.baCountry-BF{background-position:0 -380px}.baCountry-BGN{background-position:0 -400px}.baCountry-BHD{background-position:0 -420px}.baCountry-BIF{background-position:0 -440px}.baCountry-BJ{background-position:0 -460px}.baCountry-BMD{background-position:0 -480px}.baCountry-BND{background-position:0 -500px}.baCountry-BOB{background-position:0 -520px}.baCountry-BRL{background-position:0 -540px}.baCountry-BSD{background-position:0 -560px}.baCountry-BTN{background-position:0 -580px}.baCountry-BWP{background-position:0 -600px}.baCountry-BYN{background-position:0 -620px}.baCountry-BZD{background-position:0 -640px}.baCountry-CAD{background-position:0 -660px}.baCountry-CC{background-position:0 -680px}.baCountry-CDF{background-position:0 -700px}.baCountry-CG{background-position:0 -720px}.baCountry-CHF{background-position:0 -740px}.baCountry-CI{background-position:0 -760px}.baCountry-CK{background-position:0 -780px}.baCountry-CLP{background-position:0 -800px}.baCountry-CM{background-position:0 -820px}.baCountry-CNY{background-position:0 -840px}.baCountry-COP{background-position:0 -860px}.baCountry-CRC{background-position:0 -880px}.baCountry-CU{background-position:0 -900px}.baCountry-CX{background-position:0 -920px}.baCountry-CY{background-position:0 -940px}.baCountry-CZK{background-position:0 -960px}.baCountry-DE{background-position:0 -980px}.baCountry-DJF{background-position:0 -1000px}.baCountry-DKK{background-position:0 -1020px}.baCountry-DM{background-position:0 -1040px}.baCountry-DOP{background-position:0 -1060px}.baCountry-DZD{background-position:0 -1080px}.baCountry-EC{background-position:0 -1100px}.baCountry-EE{background-position:0 -1120px}.baCountry-EGP{background-position:0 -1140px}.baCountry-ER{background-position:0 -1160px}.baCountry-ES{background-position:0 -1180px}.baCountry-ETB{background-position:0 -1200px}.baCountry-EUR{background-position:0 -1220px}.baCountry-FI{background-position:0 -1240px}.baCountry-FJD{background-position:0 -1260px}.baCountry-FKP{background-position:0 -1280px}.baCountry-FO{background-position:0 -1300px}.baCountry-FR{background-position:0 -1320px}.baCountry-GA{background-position:0 -1340px}.baCountry-GBP{background-position:0 -1360px}.baCountry-GD{background-position:0 -1380px}.baCountry-GEL{background-position:0 -1400px}.baCountry-GHS{background-position:0 -1420px}.baCountry-GIP{background-position:0 -1440px}.baCountry-GL{background-position:0 -1460px}.baCountry-GMD{background-position:0 -1480px}.baCountry-GNF{background-position:0 -1500px}.baCountry-GQ{background-position:0 -1520px}.baCountry-GR{background-position:0 -1540px}.baCountry-GTQ{background-position:0 -1560px}.baCountry-GU{background-position:0 -1580px}.baCountry-GW{background-position:0 -1600px}.baCountry-HKD{background-position:0 -1620px}.baCountry-HNL{background-position:0 -1640px}.baCountry-HRK{background-position:0 -1660px}.baCountry-HTG{background-position:0 -1680px}.baCountry-HUF{background-position:0 -1700px}.baCountry-IDR{background-position:0 -1720px}.baCountry-IE{background-position:0 -1740px}.baCountry-ILS{background-position:0 -1760px}.baCountry-INR{background-position:0 -1780px}.baCountry-IO{background-position:0 -1800px}.baCountry-IQD{background-position:0 -1820px}.baCountry-IRR{background-position:0 -1840px}.baCountry-ISK{background-position:0 -1860px}.baCountry-IT{background-position:0 -1880px}.baCountry-JMD{background-position:0 -1900px}.baCountry-JOD{background-position:0 -1920px}.baCountry-JPY{background-position:0 -1940px}.baCountry-KES{background-position:0 -1960px}.baCountry-KGS{background-position:0 -1980px}.baCountry-KHR{background-position:0 -2000px}.baCountry-KI{background-position:0 -2020px}.baCountry-KMF{background-position:0 -2040px}.baCountry-KN{background-position:0 -2060px}.baCountry-KP{background-position:0 -2080px}.baCountry-KRW{background-position:0 -2100px}.baCountry-KWD{background-position:0 -2120px}.baCountry-KYD{background-position:0 -2140px}.baCountry-KZT{background-position:0 -2160px}.baCountry-LBP{background-position:0 -2180px}.baCountry-LI{background-position:0 -2200px}.baCountry-LKR{background-position:0 -2220px}.baCountry-LRD{background-position:0 -2240px}.baCountry-LSL{background-position:0 -2260px}.baCountry-LT{background-position:0 -2280px}.baCountry-LU{background-position:0 -2300px}.baCountry-LV{background-position:0 -2320px}.baCountry-LYD{background-position:0 -2340px}.baCountry-MAD{background-position:0 -2360px}.baCountry-MC{background-position:0 -2380px}.baCountry-MDL{background-position:0 -2400px}.baCountry-ME{background-position:0 -2420px}.baCountry-MGA{background-position:0 -2440px}.baCountry-MKD{background-position:0 -2460px}.baCountry-ML{background-position:0 -2480px}.baCountry-MMK{background-position:0 -2500px}.baCountry-MN{background-position:0 -2520px}.baCountry-MOP{background-position:0 -2540px}.baCountry-MQ{background-position:0 -2560px}.baCountry-MR{background-position:0 -2580px}.baCountry-MS{background-position:0 -2600px}.baCountry-MT{background-position:0 -2620px}.baCountry-MUR{background-position:0 -2640px}.baCountry-MVR{background-position:0 -2660px}.baCountry-MWK{background-position:0 -2680px}.baCountry-MXN{background-position:0 -2700px}.baCountry-MYR{background-position:0 -2720px}.baCountry-MZN{background-position:0 -2740px}.baCountry-NAD{background-position:0 -2760px}.baCountry-NE{background-position:0 -2780px}.baCountry-NF{background-position:0 -2800px}.baCountry-NG{background-position:0 -2820px}.baCountry-NIO{background-position:0 -2840px}.baCountry-NL{background-position:0 -2860px}.baCountry-NOK{background-position:0 -2880px}.baCountry-NPR{background-position:0 -2900px}.baCountry-NR{background-position:0 -2920px}.baCountry-NU{background-position:0 -2940px}.baCountry-NZD{background-position:0 -2960px}.baCountry-OMR{background-position:0 -2980px}.baCountry-PAB{background-position:0 -3000px}.baCountry-PEN{background-position:0 -3020px}.baCountry-PGK{background-position:0 -3040px}.baCountry-PHP{background-position:0 -3060px}.baCountry-PKR{background-position:0 -3080px}.baCountry-PLN{background-position:0 -3100px}.baCountry-PR{background-position:0 -3120px}.baCountry-PS{background-position:0 -3140px}.baCountry-PT{background-position:0 -3160px}.baCountry-PW{background-position:0 -3180px}.baCountry-QAR{background-position:0 -3200px}.baCountry-RON{background-position:0 -3220px}.baCountry-RSD{background-position:0 -3240px}.baCountry-RUB{background-position:0 -3260px}.baCountry-RWF{background-position:0 -3280px}.baCountry-SAR{background-position:0 -3300px}.baCountry-SBD{background-position:0 -3320px}.baCountry-SCR{background-position:0 -3340px}.baCountry-SDG{background-position:0 -3360px}.baCountry-SEK{background-position:0 -3380px}.baCountry-SGD{background-position:0 -3400px}.baCountry-SI{background-position:0 -3420px}.baCountry-SK{background-position:0 -3440px}.baCountry-SLL{background-position:0 -3460px}.baCountry-SM{background-position:0 -3480px}.baCountry-SN{background-position:0 -3500px}.baCountry-SO{background-position:0 -3520px}.baCountry-SRD{background-position:0 -3540px}.baCountry-SSP{background-position:0 -3560px}.baCountry-STD{background-position:0 -3580px}.baCountry-SV{background-position:0 -3600px}.baCountry-SYP{background-position:0 -3620px}.baCountry-SZL{background-position:0 -3640px}.baCountry-TC{background-position:0 -3660px}.baCountry-TD{background-position:0 -3680px}.baCountry-TG{background-position:0 -3700px}.baCountry-THB{background-position:0 -3720px}.baCountry-TJS{background-position:0 -3740px}.baCountry-TK{background-position:0 -3760px}.baCountry-TMT{background-position:0 -3780px}.baCountry-TND{background-position:0 -3800px}.baCountry-TOP{background-position:0 -3820px}.baCountry-TRY{background-position:0 -3840px}.baCountry-TTD{background-position:0 -3860px}.baCountry-TWD{background-position:0 -3880px}.baCountry-TZS{background-position:0 -3900px}.baCountry-UAH{background-position:0 -3920px}.baCountry-UGX{background-position:0 -3940px}.baCountry-USD{background-position:0 -3960px}.baCountry-UYU{background-position:0 -3980px}.baCountry-UZS{background-position:0 -4000px}.baCountry-VEF{background-position:0 -4020px}.baCountry-VG{background-position:0 -4040px}.baCountry-VI{background-position:0 -4060px}.baCountry-VND{background-position:0 -4080px}.baCountry-VUV{background-position:0 -4100px}.baCountry-WST{background-position:0 -4120px}.baCountry-XAF{background-position:0 -4140px}.baCountry-XPF{background-position:0 -4160px}.baCountry-YER{background-position:0 -4180px}.baCountry-ZAR{background-position:0 -4200px}.baCountry-ZM{background-position:0 -4220px}.baCountry-ZW{background-position:0 -4240px}
+  .bacurr-checkoutNotice{margin: 3px 10px 0 10px;left: 0;right: 0;text-align: center;}
+  @media (min-width:750px) {.bacurr-checkoutNotice{position: absolute;}}
+</style>
+
+<script>
+    window.baCurr = window.baCurr || {};
+    window.baCurr.config = {}; window.baCurr.rePeat = function () {};
+    Object.assign(window.baCurr.config, {
+      "enabled":true,
+      "manual_placement":"",
+      "night_time":false,
+      "round_by_default":false,
+      "display_position":"bottom_left",
+      "display_position_type":"floating",
+      "custom_code":{"css":""},
+      "flag_type":"countryandmoney",
+      "flag_design":"modern",
+      "round_style":"none",
+      "round_dec":"0.99",
+      "chosen_cur":[{"USD":"US Dollar (USD)"},{"EUR":"Euro (EUR)"},{"GBP":"British Pound (GBP)"},{"CAD":"Canadian Dollar (CAD)"},{"AED":"United Arab Emirates Dirham (AED)"},{"ALL":"Albanian Lek (ALL)"},{"AFN":"Afghan Afghani (AFN)"},{"AMD":"Armenian Dram (AMD)"},{"AOA":"Angolan Kwanza (AOA)"},{"ARS":"Argentine Peso (ARS)"},{"AUD":"Australian Dollar (AUD)"},{"AWG":"Aruban Florin (AWG)"},{"AZN":"Azerbaijani Manat (AZN)"},{"BIF":"Burundian Franc (BIF)"},{"BBD":"Barbadian Dollar (BBD)"},{"BDT":"Bangladeshi Taka (BDT)"},{"BSD":"Bahamian Dollar (BSD)"},{"BHD":"Bahraini Dinar (BHD)"},{"BMD":"Bermudan Dollar (BMD)"},{"BYN":"Belarusian Ruble (BYN)"},{"BZD":"Belize Dollar (BZD)"},{"BTN":"Bhutanese Ngultrum (BTN)"},{"BAM":"Bosnia-Herzegovina Convertible Mark (BAM)"},{"BRL":"Brazilian Real (BRL)"},{"BOB":"Bolivian Boliviano (BOB)"},{"BWP":"Botswanan Pula (BWP)"},{"BND":"Brunei Dollar (BND)"},{"BGN":"Bulgarian Lev (BGN)"},{"CDF":"Congolese Franc (CDF)"},{"CHF":"Swiss Franc (CHF)"},{"CLP":"Chilean Peso (CLP)"},{"CNY":"Chinese Yuan (CNY)"},{"COP":"Colombian Peso (COP)"},{"CRC":"Costa Rican Colon (CRC)"},{"CZK":"Czech Republic Koruna (CZK)"},{"DJF":"Djiboutian Franc (DJF)"},{"DKK":"Danish Krone (DKK)"},{"DOP":"Dominican Peso (DOP)"},{"DZD":"Algerian Dinar (DZD)"},{"EGP":"Egyptian Pound (EGP)"},{"ETB":"Ethiopian Birr (ETB)"},{"FJD":"Fijian Dollar (FJD)"},{"FKP":"Falkland Islands Pound (FKP)"},{"GIP":"Gibraltar Pound (GIP)"},{"GHS":"Ghanaian Cedi (GHS)"},{"GMD":"Gambian Dalasi (GMD)"},{"GNF":"Guinean Franc (GNF)"},{"GTQ":"Guatemalan Quetzal (GTQ)"},{"GEL":"Georgian Lari (GEL)"},{"HRK":"Croatian Kuna (HRK)"},{"HNL":"Honduran Lempira (HNL)"},{"HKD":"Hong Kong Dollar (HKD)"},{"HTG":"Haitian Gourde (HTG)"},{"HUF":"Hungarian Forint (HUF)"},{"IDR":"Indonesian Rupiah (IDR)"},{"ILS":"Israeli New Shekel (ILS)"},{"ISK":"Icelandic Krona (ISK)"},{"INR":"Indian Rupee (INR)"},{"IQD":"Iraqi Dinar (IQD)"},{"IRR":"Iranian Rial (IRR)"},{"JMD":"Jamaican Dollar (JMD)"},{"JPY":"Japanese Yen (JPY)"},{"JOD":"Jordanian Dinar (JOD)"},{"KES":"Kenyan Shilling (KES)"},{"KGS":"Kyrgystani Som (KGS)"},{"KHR":"Cambodian Riel (KHR)"},{"KMF":"Comorian Franc (KMF)"},{"KRW":"South Korean Won (KRW)"},{"KWD":"Kuwaiti Dinar (KWD)"},{"KYD":"Cayman Islands Dollar (KYD)"},{"KZT":"Kazakhstani Tenge (KZT)"},{"LBP":"Lebanese Pound (LBP)"},{"LKR":"Sri Lankan Rupee (LKR)"},{"LRD":"Liberian Dollar (LRD)"},{"LSL":"Lesotho Loti (LSL)"},{"LYD":"Libyan Dinar (LYD)"},{"MAD":"Moroccan Dirham (MAD)"},{"MDL":"Moldovan Leu (MDL)"},{"MGA":"Malagasy Ariary (MGA)"},{"MMK":"Myanmar Kyat (MMK)"},{"MKD":"Macedonian Denar (MKD)"},{"MOP":"Macanese Pataca (MOP)"},{"MUR":"Mauritian Rupee (MUR)"},{"MVR":"Maldivian Rufiyaa (MVR)"},{"MWK":"Malawian Kwacha (MWK)"},{"MXN":"Mexican Peso (MXN)"},{"MYR":"Malaysian Ringgit (MYR)"},{"MZN":"Mozambican Metical (MZN)"},{"NAD":"Namibian Dollar (NAD)"},{"NPR":"Nepalese Rupee (NPR)"},{"NZD":"New Zealand Dollar (NZD)"},{"NIO":"Nicaraguan Cordoba (NIO)"},{"NOK":"Norwegian Krone (NOK)"},{"OMR":"Omani Rial (OMR)"},{"PAB":"Panamanian Balboa (PAB)"},{"PKR":"Pakistani Rupee (PKR)"},{"PGK":"Papua New Guinean Kina (PGK)"},{"PEN":"Peruvian Nuevo Sol (PEN)"},{"PHP":"Philippine Peso (PHP)"},{"PLN":"Polish Zloty (PLN)"},{"QAR":"Qatari Rial (QAR)"},{"RON":"Romanian Leu (RON)"},{"RUB":"Russian Ruble (RUB)"},{"RWF":"Rwandan Franc (RWF)"},{"SAR":"Saudi Riyal (SAR)"},{"STD":"Sao Tome and Principe Dobra (STD)"},{"RSD":"Serbian Dinar (RSD)"},{"SCR":"Seychellois Rupee (SCR)"},{"SGD":"Singapore Dollar (SGD)"},{"SYP":"Syrian Pound (SYP)"},{"SEK":"Swedish Krona (SEK)"},{"TWD":"New Taiwan Dollar (TWD)"},{"THB":"Thai Baht (THB)"},{"TZS":"Tanzanian Shilling (TZS)"},{"TTD":"Trinidad and Tobago Dollar (TTD)"},{"TND":"Tunisian Dinar (TND)"},{"TRY":"Turkish Lira (TRY)"},{"SBD":"Solomon Islands Dollar (SBD)"},{"SDG":"Sudanese Pound (SDG)"},{"SLL":"Sierra Leonean Leone (SLL)"},{"SRD":"Surinamese Dollar (SRD)"},{"SZL":"Swazi Lilangeni (SZL)"},{"TJS":"Tajikistani Somoni (TJS)"},{"TOP":"Tongan Paʻanga (TOP)"},{"TMT":"Turkmenistani Manat (TMT)"},{"UAH":"Ukrainian Hryvnia (UAH)"},{"UGX":"Ugandan Shilling (UGX)"},{"UYU":"Uruguayan Peso (UYU)"},{"UZS":"Uzbekistan Som (UZS)"},{"VEF":"Venezuelan Bolivar (VEF)"},{"VND":"Vietnamese Dong (VND)"},{"VUV":"Vanuatu Vatu (VUV)"},{"WST":"Samoan Tala (WST)"},{"XAF":"Central African CFA Franc (XAF)"},{"XPF":"CFP Franc (XPF)"},{"YER":"Yemeni Rial (YER)"},{"ZAR":"South African Rand (ZAR)"}],
+      "desktop_visible":true,
+      "mob_visible":true,
+      "money_mouse_show":false,
+      "textColor":"#1e1e1e",
+      "flag_theme":"default",
+      "selector_hover_hex":"#ffffff",
+      "lightning":true,
+      "mob_manual_placement":"",
+      "mob_placement":"bottom_left",
+      "mob_placement_type":"floating",
+      "moneyWithCurrencyFormat":false,
+      "ui_style":"default",
+      "user_curr":"",
+      "auto_loc":true,
+      "auto_pref":false,
+      "selector_bg_hex":"#ffffff",
+      "selector_border_type":"boxShadow",
+      "cart_alert_bg_hex":"#fbf5f5",
+      "cart_alert_note":"All orders are processed in [checkout_currency], using the latest exchange rates.",
+      "cart_alert_state":true,
+      "cart_alert_font_hex":"#1e1e1e"
+    },{
+      money_format: "\u003cspan class=money\u003eRs. {{amount_no_decimals}}\u003c\/span\u003e",
+      money_with_currency_format: "\u003cspan class=money\u003eRs. {{amount_no_decimals}}\u003c\/span\u003e",
+      user_curr: "INR"
+    });
+    window.baCurr.config.multi_curr = [];
+    
+    window.baCurr.config.final_currency = "INR" || '';
+    window.baCurr.config.multi_curr = "INR".split(',') || '';
+
+    (function(window, document) {"use strict";
+      function onload(){
+        function insertPopupMessageJs(){
+          var head = document.getElementsByTagName('head')[0];
+          var script = document.createElement('script');
+          script.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'boosterapps.com/apps/currency/preview_curr.js';
+          script.type = 'text/javascript';
+          head.appendChild(script);
+        }
+
+        if(document.location.search.indexOf("preview_cur=1") > -1){
+          setTimeout(function(){
+            window.currency_preview_result = document.getElementById("baCurrSelector").length > 0 ? 'success' : 'error';
+            insertPopupMessageJs();
+          }, 1000);
+        }
+      }
+
+      var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + "";
+      script.type = 'text/javascript';
+      script.onload = script.onreadystatechange = function() {
+      if (script.readyState) {
+        if (script.readyState === 'complete' || script.readyState === 'loaded') {
+          script.onreadystatechange = null;
+            onload();
+          }
+        }
+        else {
+          onload();
+        }
+      };
+      head.appendChild(script);
+
+    }(window, document));
+</script>
+
+<!--Gem_Page_Header_Script-->
+    
+
+
+<!--End_Gem_Page_Header_Script-->
+    <meta name="trustpilot-one-time-domain-verification-id" content="dbd5e07e-5fa2-43ed-8b53-98d3c36c0d64"/>
+<!-- BEGIN app block: shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- END app block --><!-- BEGIN app block: shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8 --><!-- Start of Judge.me Core -->
+
+
+
+<link rel="dns-prefetch" href="https://cdnwidget.judge.me">
+<link rel="dns-prefetch" href="https://cdn.judge.me">
+<link rel="dns-prefetch" href="https://cdn1.judge.me">
+<link rel="dns-prefetch" href="https://api.judge.me">
+
+<script data-cfasync='false' class='jdgm-settings-script'>window.jdgmSettings={"pagination":5,"disable_web_reviews":false,"badge_no_review_text":"No reviews","badge_n_reviews_text":"{{ n }} review/reviews","hide_badge_preview_if_no_reviews":false,"badge_hide_text":false,"enforce_center_preview_badge":false,"widget_title":"Customer Reviews","widget_open_form_text":"Write a review","widget_close_form_text":"Cancel review","widget_refresh_page_text":"Refresh page","widget_summary_text":"Based on {{ number_of_reviews }} review/reviews","widget_no_review_text":"Be the first to write a review","widget_name_field_text":"Display name","widget_verified_name_field_text":"Verified Name (public)","widget_name_placeholder_text":"Display name","widget_required_field_error_text":"This field is required.","widget_email_field_text":"Email address","widget_verified_email_field_text":"Verified Email (private, can not be edited)","widget_email_placeholder_text":"Your email address","widget_email_field_error_text":"Please enter a valid email address.","widget_rating_field_text":"Rating","widget_review_title_field_text":"Review Title","widget_review_title_placeholder_text":"Give your review a title","widget_review_body_field_text":"Review content","widget_review_body_placeholder_text":"Start writing here...","widget_pictures_field_text":"Picture/Video (optional)","widget_submit_review_text":"Submit Review","widget_submit_verified_review_text":"Submit Verified Review","widget_submit_success_msg_with_auto_publish":"Thank you! Please refresh the page in a few moments to see your review. You can remove or edit your review by logging into \u003ca href='https://judge.me/login' target='_blank' rel='nofollow noopener'\u003eJudge.me\u003c/a\u003e","widget_submit_success_msg_no_auto_publish":"Thank you! Your review will be published as soon as it is approved by the shop admin. You can remove or edit your review by logging into \u003ca href='https://judge.me/login' target='_blank' rel='nofollow noopener'\u003eJudge.me\u003c/a\u003e","widget_show_default_reviews_out_of_total_text":"Showing {{ n_reviews_shown }} out of {{ n_reviews }} reviews.","widget_show_all_link_text":"Show all","widget_show_less_link_text":"Show less","widget_author_said_text":"{{ reviewer_name }} said:","widget_days_text":"{{ n }} days ago","widget_weeks_text":"{{ n }} week/weeks ago","widget_months_text":"{{ n }} month/months ago","widget_years_text":"{{ n }} year/years ago","widget_yesterday_text":"Yesterday","widget_today_text":"Today","widget_replied_text":"\u003e\u003e {{ shop_name }} replied:","widget_read_more_text":"Read more","widget_rating_filter_see_all_text":"See all reviews","widget_sorting_most_recent_text":"Most Recent","widget_sorting_highest_rating_text":"Highest Rating","widget_sorting_lowest_rating_text":"Lowest Rating","widget_sorting_with_pictures_text":"Only Pictures","widget_sorting_most_helpful_text":"Most Helpful","widget_open_question_form_text":"Ask a question","widget_reviews_subtab_text":"Reviews","widget_questions_subtab_text":"Questions","widget_question_label_text":"Question","widget_answer_label_text":"Answer","widget_question_placeholder_text":"Write your question here","widget_submit_question_text":"Submit Question","widget_question_submit_success_text":"Thank you for your question! We will notify you once it gets answered.","verified_badge_text":"Verified","verified_badge_placement":"left-of-reviewer-name","widget_hide_border":false,"widget_social_share":false,"all_reviews_include_out_of_store_products":true,"all_reviews_out_of_store_text":"(out of store)","all_reviews_product_name_prefix_text":"about","enable_review_pictures":true,"review_date_format":"dd/mm/yyyy","widget_product_reviews_subtab_text":"Product Reviews","widget_shop_reviews_subtab_text":"Shop Reviews","widget_write_a_store_review_text":"Write a Store Review","widget_other_languages_heading":"Reviews in Other Languages","widget_translate_review_text":"Translate review to {{ language }}","widget_translating_review_text":"Translating...","widget_show_original_translation_text":"Show original ({{ language }})","widget_translate_review_failed_text":"Review couldn't be translated.","widget_translate_review_retry_text":"Retry","widget_translate_review_try_again_later_text":"Try again later","widget_sorting_pictures_first_text":"Pictures First","floating_tab_button_name":"★ Reviews","floating_tab_title":"Let customers speak for us","floating_tab_url":"","floating_tab_url_enabled":false,"all_reviews_text_badge_text":"Customers rate us {{ shop.metafields.judgeme.all_reviews_rating | round: 1 }}/5 based on {{ shop.metafields.judgeme.all_reviews_count }} reviews.","all_reviews_text_badge_text_branded_style":"{{ shop.metafields.judgeme.all_reviews_rating | round: 1 }} out of 5 stars based on {{ shop.metafields.judgeme.all_reviews_count }} reviews","all_reviews_text_badge_url":"","all_reviews_text_style":"branded","featured_carousel_show_header":false,"featured_carousel_title":"Happy Customers","featured_carousel_count_text":"from {{ n }} reviews","featured_carousel_url":"","featured_carousel_arrows_on_the_sides":true,"featured_carousel_arrow_color":"#EEEEEE","verified_count_badge_style":"branded","verified_count_badge_url":"","picture_reminder_submit_button":"Upload Pictures","widget_sorting_videos_first_text":"Videos First","widget_review_pending_text":"Pending","remove_microdata_snippet":true,"preview_badge_no_question_text":"No questions","preview_badge_n_question_text":"{{ number_of_questions }} question/questions","widget_search_bar_placeholder":"Search reviews","widget_sorting_verified_only_text":"Verified only","featured_carousel_theme":"focused","featured_carousel_show_product":false,"featured_carousel_full_star_background":"#FF9529","featured_carousel_verified_badge_enable":true,"featured_carousel_verified_badge_color":"#FF9529","featured_carousel_more_reviews_button_text":"Read more reviews","featured_carousel_view_product_button_text":"View product","all_reviews_page_load_more_text":"Load More Reviews","widget_advanced_speed_features":5,"widget_public_name_text":"displayed publicly like","default_reviewer_name_has_non_latin":true,"widget_reviewer_anonymous":"Anonymous","medals_widget_title":"Judge.me Review Medals","widget_invalid_yt_video_url_error_text":"Not a YouTube video URL","widget_max_length_field_error_text":"Please enter no more than {0} characters.","widget_verified_by_shop_text":"Verified by Shop","widget_load_with_code_splitting":true,"widget_ugc_title":"Made by us, Shared by you","widget_ugc_subtitle":"Tag us to see your picture featured in our page","widget_ugc_primary_button_text":"Buy Now","widget_ugc_secondary_button_text":"Load More","widget_ugc_reviews_button_text":"View Reviews","widget_primary_color":"#5B5B5B","widget_summary_average_rating_text":"{{ average_rating }} out of 5","widget_media_grid_title":"Customer photos \u0026 videos","widget_media_grid_see_more_text":"See more","widget_verified_by_judgeme_text":"Verified by Judge.me","widget_verified_by_judgeme_text_in_store_medals":"Verified by Judge.me","widget_media_field_exceed_quantity_message":"Sorry, we can only accept {{ max_media }} for one review.","widget_media_field_exceed_limit_message":"{{ file_name }} is too large, please select a {{ media_type }} less than {{ size_limit }}MB.","widget_review_submitted_text":"Review Submitted!","widget_question_submitted_text":"Question Submitted!","widget_close_form_text_question":"Cancel","widget_write_your_answer_here_text":"Write your answer here","widget_enabled_branded_link":true,"widget_show_collected_by_judgeme":true,"widget_collected_by_judgeme_text":"collected by Judge.me","widget_load_more_text":"Load More","widget_full_review_text":"Full Review","widget_read_more_reviews_text":"Read More Reviews","widget_read_questions_text":"Read Questions","widget_questions_and_answers_text":"Questions \u0026 Answers","widget_verified_by_text":"Verified by","widget_verified_text":"Verified","widget_number_of_reviews_text":"{{ number_of_reviews }} reviews","widget_back_button_text":"Back","widget_next_button_text":"Next","widget_custom_forms_filter_button":"Filters","how_reviews_are_collected":"How reviews are collected?","widget_gdpr_statement":"How we use your data: We'll only contact you about the review you left, and only if necessary. By submitting your review, you agree to Judge.me's \u003ca href='https://judge.me/terms' target='_blank' rel='nofollow noopener'\u003eterms\u003c/a\u003e, \u003ca href='https://judge.me/privacy' target='_blank' rel='nofollow noopener'\u003eprivacy\u003c/a\u003e and \u003ca href='https://judge.me/content-policy' target='_blank' rel='nofollow noopener'\u003econtent\u003c/a\u003e policies.","review_snippet_widget_round_border_style":true,"review_snippet_widget_card_color":"#FFFFFF","review_snippet_widget_slider_arrows_background_color":"#FFFFFF","review_snippet_widget_slider_arrows_color":"#000000","review_snippet_widget_star_color":"#108474","all_reviews_product_variant_label_text":"Variant: ","widget_show_verified_branding":true,"redirect_reviewers_invited_via_email":"review_widget","review_content_screen_title_text":"How would you rate this product?","review_content_introduction_text":"We would love it if you would share a bit about your experience.","one_star_review_guidance_text":"Poor","five_star_review_guidance_text":"Great","customer_information_screen_title_text":"About you","customer_information_introduction_text":"Please tell us more about you.","custom_questions_screen_title_text":"Your experience in more detail","custom_questions_introduction_text":"Here are a few questions to help us understand more about your experience.","review_submitted_screen_title_text":"Thanks for your review!","review_submitted_screen_thank_you_text":"We are processing it and it will appear on the store soon.","review_submitted_screen_email_verification_text":"Please confirm your email by clicking the link we just sent you. This helps us keep reviews authentic.","review_submitted_request_store_review_text":"Would you like to share your experience of shopping with us?","review_submitted_review_other_products_text":"Would you like to review these products?","reviewer_media_screen_title_picture_text":"Share a picture","reviewer_media_introduction_picture_text":"Upload a photo to support your review.","reviewer_media_screen_title_video_text":"Share a video","reviewer_media_introduction_video_text":"Upload a video to support your review.","reviewer_media_screen_title_picture_or_video_text":"Share a picture or video","reviewer_media_introduction_picture_or_video_text":"Upload a photo or video to support your review.","reviewer_media_youtube_url_text":"Paste your Youtube URL here","advanced_settings_next_step_button_text":"Next","advanced_settings_close_review_button_text":"Close","write_review_flow_required_text":"Required","write_review_flow_privacy_message_text":"We respect your privacy.","write_review_flow_anonymous_text":"Post review as anonymous","write_review_flow_visibility_text":"This won't be visible to other customers.","write_review_flow_multiple_selection_help_text":"Select as many as you like","write_review_flow_single_selection_help_text":"Select one option","write_review_flow_required_field_error_text":"This field is required","write_review_flow_invalid_email_error_text":"Please enter a valid email address","write_review_flow_max_length_error_text":"Max. {{ max_length }} characters.","write_review_flow_media_upload_text":"\u003cb\u003eClick to upload\u003c/b\u003e or drag and drop","write_review_flow_gdpr_statement":"We'll only contact you about your review if necessary. By submitting your review, you agree to our \u003ca href='https://judge.me/terms' target='_blank' rel='nofollow noopener'\u003eterms and conditions\u003c/a\u003e and \u003ca href='https://judge.me/privacy' target='_blank' rel='nofollow noopener'\u003eprivacy policy\u003c/a\u003e.","transparency_badges_collected_via_store_invite_text":"Review collected via store invitation","transparency_badges_from_another_provider_text":"Review collected from another provider","transparency_badges_collected_from_store_visitor_text":"Review collected from a store visitor","transparency_badges_written_in_google_text":"Review written in Google","transparency_badges_written_in_etsy_text":"Review written in Etsy","transparency_badges_written_in_shop_app_text":"Review written in Shop App","transparency_badges_earned_reward_text":"Review earned a reward for future purchase","platform":"shopify","branding_url":"https://app.judge.me/reviews","branding_text":"Powered by Judge.me","locale":"en","reply_name":"Lemonaed ","widget_version":"3.0","footer":true,"autopublish":false,"review_dates":true,"enable_custom_form":false,"shop_locale":"en","enable_multi_locales_translations":false,"show_review_title_input":true,"review_verification_email_status":"always","can_be_branded":false,"reply_name_text":"Lemonaed "};</script> <style class='jdgm-settings-style'>.jdgm-xx{left:0}:root{--jdgm-primary-color: #5B5B5B;--jdgm-secondary-color: rgba(91,91,91,0.1);--jdgm-star-color: #5B5B5B;--jdgm-write-review-text-color: white;--jdgm-write-review-bg-color: #5B5B5B;--jdgm-paginate-color: #5B5B5B;--jdgm-border-radius: 0;--jdgm-reviewer-name-color: #5B5B5B}.jdgm-histogram__bar-content{background-color:#5B5B5B}.jdgm-rev[data-verified-buyer=true] .jdgm-rev__icon.jdgm-rev__icon:after,.jdgm-rev__buyer-badge.jdgm-rev__buyer-badge{color:white;background-color:#5B5B5B}.jdgm-review-widget--small .jdgm-gallery.jdgm-gallery .jdgm-gallery__thumbnail-link:nth-child(8) .jdgm-gallery__thumbnail-wrapper.jdgm-gallery__thumbnail-wrapper:before{content:"See more"}@media only screen and (min-width: 768px){.jdgm-gallery.jdgm-gallery .jdgm-gallery__thumbnail-link:nth-child(8) .jdgm-gallery__thumbnail-wrapper.jdgm-gallery__thumbnail-wrapper:before{content:"See more"}}.jdgm-author-all-initials{display:none !important}.jdgm-author-last-initial{display:none !important}.jdgm-rev-widg__title{visibility:hidden}.jdgm-rev-widg__summary-text{visibility:hidden}.jdgm-prev-badge__text{visibility:hidden}.jdgm-rev__prod-link-prefix:before{content:'about'}.jdgm-rev__variant-label:before{content:'Variant: '}.jdgm-rev__out-of-store-text:before{content:'(out of store)'}@media only screen and (min-width: 768px){.jdgm-rev__pics .jdgm-rev_all-rev-page-picture-separator,.jdgm-rev__pics .jdgm-rev__product-picture{display:none}}@media only screen and (max-width: 768px){.jdgm-rev__pics .jdgm-rev_all-rev-page-picture-separator,.jdgm-rev__pics .jdgm-rev__product-picture{display:none}}.jdgm-preview-badge[data-template="product"]{display:none !important}.jdgm-preview-badge[data-template="collection"]{display:none !important}.jdgm-preview-badge[data-template="index"]{display:none !important}.jdgm-review-widget[data-from-snippet="true"]{display:none !important}.jdgm-verified-count-badget[data-from-snippet="true"]{display:none !important}.jdgm-carousel-wrapper[data-from-snippet="true"]{display:none !important}.jdgm-all-reviews-text[data-from-snippet="true"]{display:none !important}.jdgm-medals-section[data-from-snippet="true"]{display:none !important}.jdgm-ugc-media-wrapper[data-from-snippet="true"]{display:none !important}.jdgm-review-snippet-widget .jdgm-rev-snippet-widget__cards-container .jdgm-rev-snippet-card{border-radius:8px;background:#fff}.jdgm-review-snippet-widget .jdgm-rev-snippet-widget__cards-container .jdgm-rev-snippet-card__rev-rating .jdgm-star{color:#108474}.jdgm-review-snippet-widget .jdgm-rev-snippet-widget__prev-btn,.jdgm-review-snippet-widget .jdgm-rev-snippet-widget__next-btn{border-radius:50%;background:#fff}.jdgm-review-snippet-widget .jdgm-rev-snippet-widget__prev-btn>svg,.jdgm-review-snippet-widget .jdgm-rev-snippet-widget__next-btn>svg{fill:#000}.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jm-mfp-content,.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev__icon,.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev__pic-img,.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev__reply{border-radius:8px}.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev[data-verified-buyer="true"] .jdgm-full-rev__icon::after{border-radius:8px}.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev .jdgm-rev__buyer-badge{border-radius:calc( 8px / 2 )}.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev .jdgm-full-rev__replier::before{content:'Lemonaed '}.jdgm-full-rev-modal.rev-snippet-widget .jm-mfp-container .jdgm-full-rev .jdgm-full-rev__product-button{border-radius:calc( 8px * 6 )}
+</style> <style class='jdgm-settings-style'></style>
+
+  
+  
+  
+  <style class='jdgm-miracle-styles'>
+  @-webkit-keyframes jdgm-spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg)}}@keyframes jdgm-spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:'JudgemeStar';src:url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAScAA0AAAAABrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEgAAAABoAAAAcbyQ+3kdERUYAAARgAAAAHgAAACAAMwAGT1MvMgAAAZgAAABGAAAAVi+vS9xjbWFwAAAB8AAAAEAAAAFKwBMjvmdhc3AAAARYAAAACAAAAAj//wADZ2x5ZgAAAkAAAAEJAAABdH33LXtoZWFkAAABMAAAAC0AAAA2BroQKWhoZWEAAAFgAAAAHAAAACQD5QHQaG10eAAAAeAAAAAPAAAAFAYAAABsb2NhAAACMAAAAA4AAAAOAO4AeG1heHAAAAF8AAAAHAAAACAASgAvbmFtZQAAA0wAAADeAAABkorWfVZwb3N0AAAELAAAACkAAABEp3ubLXgBY2BkYADhPPP4OfH8Nl8ZuJkYQODS2fRrCPr/aSYGxq1ALgcDWBoAO60LkwAAAHgBY2BkYGDc+v80gx4TAwgASaAICmABAFB+Arl4AWNgZGBgYGPQYWBiAAIwyQgWc2AAAwAHVQB6eAFjYGRiYJzAwMrAwejDmMbAwOAOpb8ySDK0MDAwMbByMsCBAAMCBKS5pjA4PGB4wMR44P8BBj3GrQymQGFGkBwAjtgK/gAAeAFjYoAAEA1jAwAAZAAHAHgB3crBCcAwDEPRZydkih567CDdf4ZskmLwFBV8xBfCaC4BXkOUmx4sU0h2ngNb9V0vQCxaRKIAevT7fGWuBrEAAAAAAAAAAAA0AHgAugAAeAF9z79Kw1AUx/FzTm7un6QmJtwmQ5Bg1abgEGr/BAqlU6Gju+Cgg1MkQ/sA7Vj7BOnmO/gUvo2Lo14NqIO6/IazfD8HEODtmQCfoANwNsyp2/GJt3WKQrd1NLiYYWx2PBqOsmJMEOznPOTzfSCrhAtbbLdmeFLJV9eKd63WLrZcIcuaEVdssWCKM6pLCfTVOYbz/0pNSMSZKLIZpvh78sAUH6PlMrreTCabP9r+Z/puPZ2ur/RqpQHgh+MIegCnXeM4MRAPjYN//5tj4ZtTjkFqEdmeMShlEJ7tVAly2TAkx6R68Fl4E/aVvn8JqHFQ4JS1434gXKcuL31dDhzs3YbsEOAd/IU88gAAAHgBfY4xTgMxEEVfkk0AgRCioKFxQYd2ZRtpixxgRU2RfhU5q5VWseQ4JdfgAJyBlmNwAM7ABRhZQ0ORwp7nr+eZAa54YwYg9zm3ynPOeFRe8MCrciXOh/KSS76UV5L/iDmrLiS5AeU519wrL3jmSbkS5115yR2fyivJv9kx0ZMZ2RLZw27q87iNQi8EBo5FSPIMw3HqBboi5lKTGAGDp8FKXWP+t9TU01Lj5His1Ba6uM9dTEMwvrFmbf5GC/q2drW3ruXUhhsCiQOjznFlCzYhHUZp4xp76vsvQh89CQAAeAFjYGJABowM6IANLMrEyMTIzMjCXpyRWJBqZshWXJJYBKOMAFHFBucAAAAAAAAB//8AAngBY2BkYGDgA2IJBhBgAvKZGViBJAuYxwAABJsAOgAAeAFjYGBgZACCk535hiD60tn0azAaAEqpB6wAAA==") format("woff");font-weight:normal;font-style:normal}.jdgm-star{font-family:'JudgemeStar';display:inline !important;text-decoration:none !important;padding:0 4px 0 0 !important;margin:0 !important;font-weight:bold;opacity:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.jdgm-star:hover{opacity:1}.jdgm-star:last-of-type{padding:0 !important}.jdgm-star.jdgm--on:before{content:"\e000"}.jdgm-star.jdgm--off:before{content:"\e001"}.jdgm-star.jdgm--half:before{content:"\e002"}.jdgm-widget *{margin:0;line-height:1.4;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-overflow-scrolling:touch}.jdgm-hidden{display:none !important;visibility:hidden !important}.jdgm-temp-hidden{display:none}.jdgm-spinner{width:40px;height:40px;margin:auto;border-radius:50%;border-top:2px solid #eee;border-right:2px solid #eee;border-bottom:2px solid #eee;border-left:2px solid #ccc;-webkit-animation:jdgm-spin 0.8s infinite linear;animation:jdgm-spin 0.8s infinite linear}.jdgm-prev-badge{display:block !important}
+
+</style>
+
+
+  
+  
+   
+
+
+<script data-cfasync='false' class='jdgm-script'>
+!function(e){window.jdgm=window.jdgm||{},jdgm.CDN_HOST="https://cdnwidget.judge.me/",jdgm.API_HOST="https://api.judge.me/",
+jdgm.docReady=function(d){(e.attachEvent?"complete"===e.readyState:"loading"!==e.readyState)?
+setTimeout(d,0):e.addEventListener("DOMContentLoaded",d)},jdgm.loadCSS=function(d,t,o,a){
+!o&&jdgm.loadCSS.requestedUrls.indexOf(d)>=0||(jdgm.loadCSS.requestedUrls.push(d),
+(a=e.createElement("link")).rel="stylesheet",a.class="jdgm-stylesheet",a.media="nope!",
+a.href=d,a.onload=function(){this.media="all",t&&setTimeout(t)},e.body.appendChild(a))},
+jdgm.loadCSS.requestedUrls=[],jdgm.loadJS=function(e,d){var t=new XMLHttpRequest;
+t.onreadystatechange=function(){4===t.readyState&&(Function(t.response)(),d&&d(t.response))},
+t.open("GET",e),t.send()},jdgm.docReady((function(){(window.jdgmLoadCSS||e.querySelectorAll(
+".jdgm-widget, .jdgm-all-reviews-page").length>0)&&(jdgmSettings.widget_load_with_code_splitting?
+parseFloat(jdgmSettings.widget_version)>=3?jdgm.loadCSS(jdgm.CDN_HOST+"widget_v3/base.css"):
+jdgm.loadCSS(jdgm.CDN_HOST+"widget/base.css"):jdgm.loadCSS(jdgm.CDN_HOST+"shopify_v2.css"),
+jdgm.loadJS(jdgm.CDN_HOST+"loader.js"))}))}(document);
+</script>
+<noscript><link rel="stylesheet" type="text/css" media="all" href="https://cdnwidget.judge.me/shopify_v2.css"></noscript>
+
+<!-- BEGIN app snippet: theme_fix_tags --><script>
+  (function() {
+    var jdgmThemeFixes = null;
+    if (!jdgmThemeFixes) return;
+    var thisThemeFix = jdgmThemeFixes[Shopify.theme.id];
+    if (!thisThemeFix) return;
+
+    if (thisThemeFix.html) {
+      document.addEventListener("DOMContentLoaded", function() {
+        var htmlDiv = document.createElement('div');
+        htmlDiv.classList.add('jdgm-theme-fix-html');
+        htmlDiv.innerHTML = thisThemeFix.html;
+        document.body.append(htmlDiv);
+      });
+    };
+
+    if (thisThemeFix.css) {
+      var styleTag = document.createElement('style');
+      styleTag.classList.add('jdgm-theme-fix-style');
+      styleTag.innerHTML = thisThemeFix.css;
+      document.head.append(styleTag);
+    };
+
+    if (thisThemeFix.js) {
+      var scriptTag = document.createElement('script');
+      scriptTag.classList.add('jdgm-theme-fix-script');
+      scriptTag.innerHTML = thisThemeFix.js;
+      document.head.append(scriptTag);
+    };
+  })();
+</script>
+<!-- END app snippet -->
+<!-- End of Judge.me Core -->
+
+
+
+<!-- END app block --><link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
+<script>(function(){if ("sendBeacon" in navigator && "performance" in window) {try {var session_token_from_headers = performance.getEntriesByType('navigation')[0].serverTiming.find(x => x.name == '_s').description;} catch {var session_token_from_headers = undefined;}var session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/);var session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1] : "";var session_token = session_token_from_headers || session_token_from_cookie || "";function handle_abandonment_event(e) {var entries = performance.getEntries().filter(function(entry) {return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;var payload = {shop_id: 76611879198,url: window.location.href,navigation_start,duration: currentMs - navigation_start,session_token,page_type: "index"};window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1",payload: payload,metadata: {event_created_at_ms: currentMs,event_sent_at_ms: currentMs}}));}}window.addEventListener('pagehide', handle_abandonment_event);}}());</script>
+<script id="web-pixels-manager-setup">(function e(e,d,r,n,o,i){if(void 0===i&&(i={}),!Boolean(null===(t=null===(a=window.Shopify)||void 0===a?void 0:a.analytics)||void 0===t?void 0:t.replayQueue)){var a,t;window.Shopify=window.Shopify||{};var s=window.Shopify;s.analytics=s.analytics||{};var l=s.analytics;l.replayQueue=[],l.publish=function(e,d,r){return l.replayQueue.push([e,d,r]),!0};try{self.performance.mark("wpm:start")}catch(e){}var u=function(){var e={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(13[5-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(13[5-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/},d=e.modern,r=e.legacy,n=navigator.userAgent;return n.match(d)?"modern":n.match(r)?"legacy":"unknown"}(),c="modern"===u?"modern":"legacy",f=(null!=o?o:{modern:"",legacy:""})[c],m=function(e){return[e.baseUrl,"/wpm","/b",e.hashVersion,"modern"===e.buildTarget?"m":"l",".js"].join("")}({baseUrl:r,hashVersion:n,buildTarget:c}),p=function(e){var d=e.version,r=e.bundleTarget,n=e.surface,o=e.pageUrl,i=e.monorailEndpoint;return{emit:function(e){var a=e.status,t=e.errorMsg,s=(new Date).getTime(),l=JSON.stringify({metadata:{event_sent_at_ms:s},events:[{schema_id:"web_pixels_manager_load/3.1",payload:{version:d,bundle_target:r,page_url:o,status:a,surface:n,error_msg:t},metadata:{event_created_at_ms:s}}]});if(!i)return console&&console.warn&&console.warn("[Web Pixels Manager] No Monorail endpoint provided, skipping logging."),!1;try{return self.navigator.sendBeacon.bind(self.navigator)(i,l)}catch(e){}var u=new XMLHttpRequest;try{return u.open("POST",i,!0),u.setRequestHeader("Content-Type","text/plain"),u.send(l),!0}catch(e){return console&&console.warn&&console.warn("[Web Pixels Manager] Got an unhandled error while logging to Monorail."),!1}}}}({version:n,bundleTarget:u,surface:e.surface,pageUrl:self.location.href,monorailEndpoint:e.monorailEndpoint});try{i.browserTarget=u,function(e){var d=e.src,r=e.async,n=void 0===r||r,o=e.onload,i=e.onerror,a=e.sri,t=e.scriptDataAttributes,s=void 0===t?{}:t,l=document.createElement("script"),u=document.querySelector("head"),c=document.querySelector("body");if(l.async=n,l.src=d,a&&(l.integrity=a,l.crossOrigin="anonymous"),s)for(var f in s)if(Object.prototype.hasOwnProperty.call(s,f))try{l.dataset[f]=s[f]}catch(e){}if(o&&l.addEventListener("load",o),i&&l.addEventListener("error",i),u)u.appendChild(l);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(l)}}({src:m,async:!0,onload:function(){if(!function(){var e,d;return Boolean(null===(d=null===(e=window.Shopify)||void 0===e?void 0:e.analytics)||void 0===d?void 0:d.initialized)}()){var r=window.webPixelsManager.init(e)||void 0;if(r){d(r);var n=window.Shopify.analytics;n.replayQueue.forEach((function(e){var d=e[0],n=e[1],o=e[2];r.publishCustomEvent(d,n,o)})),n.replayQueue=[],n.publish=r.publishCustomEvent,n.visitor=r.visitor,n.initialized=!0}}},onerror:function(){return p.emit({status:"failed",errorMsg:"".concat(m," has failed to load")})},sri:function(e){var d=/^sha384-[A-Za-z0-9+/=]+$/;return"string"==typeof e&&d.test(e)}(f)?f:"",scriptDataAttributes:i}),p.emit({status:"loading"})}catch(e){p.emit({status:"failed",errorMsg:(null==e?void 0:e.message)||"Unknown error"})}}})({shopId: 76611879198,storefrontBaseUrl: "https://lemonaed.in",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://monorail-edge.shopifysvc.com/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["ac843a20","c2aeb305"],webPixelsConfigList: [{"id":"1662550302","configuration":"{\"webPixelName\":\"Judge.me\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"34ad157958823915625854214640f0bf","type":"APP","apiClientId":683015,"privacyPurposes":["ANALYTICS"]},{"id":"690782494","configuration":"{\"config\":\"{\\\"pixel_id\\\":\\\"G-PCP4CZ9D2Q\\\",\\\"gtag_events\\\":[{\\\"type\\\":\\\"purchase\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"},{\\\"type\\\":\\\"page_view\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"},{\\\"type\\\":\\\"view_item\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"},{\\\"type\\\":\\\"search\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"},{\\\"type\\\":\\\"add_to_cart\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"},{\\\"type\\\":\\\"begin_checkout\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"},{\\\"type\\\":\\\"add_payment_info\\\",\\\"action_label\\\":\\\"G-PCP4CZ9D2Q\\\"}],\\\"enable_monitoring_mode\\\":false}\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"b2a88bafab3e21179ed38636efcd8a93","type":"APP","apiClientId":1780363,"privacyPurposes":[]},{"id":"250315038","configuration":"{\"pixel_id\":\"224782513983979\",\"pixel_type\":\"facebook_pixel\",\"metaapp_system_user_token\":\"-\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"6d8c3ef0426b37b2a9b717daeb719f58","type":"APP","apiClientId":2329312,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"]},{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0440","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0440","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: false,initData: {"shop":{"name":"Lemonaed ","paymentSettings":{"currencyCode":"INR"},"myshopifyDomain":"lemonaed.myshopify.com","countryCode":"IN","storefrontUrl":"https://lemonaed.in"},"customer":null,"cart":null,"checkout":null,"productVariants":[],"purchasingCompany":null},},function pageEvents(webPixelsManagerAPI) {},"https://lemonaed.in/cdn","73b305c4w82c1918fpb7086179m603a4010",{"modern":"","legacy":""},{"shopId":"76611879198","storefrontBaseUrl":"https://lemonaed.in","extensionBaseUrl":"https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"ac843a20\", \"c2aeb305\"]","isMerchantRequest":"false","hashVersion":"73b305c4w82c1918fpb7086179m603a4010","publish":"custom","events":"[[\"page_viewed\",{}]]"});</script><script>
+  window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+  window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+  window.ShopifyAnalytics.meta.currency = 'INR';
+  var meta = {"page":{"pageType":"home"}};
+  for (var attr in meta) {
+    window.ShopifyAnalytics.meta[attr] = meta[attr];
+  }
+</script>
+<script class="analytics">
+  (function () {
+    var customDocumentWrite = function(content) {
+      var jquery = null;
+
+      if (window.jQuery) {
+        jquery = window.jQuery;
+      } else if (window.Checkout && window.Checkout.$) {
+        jquery = window.Checkout.$;
+      }
+
+      if (jquery) {
+        jquery('body').append(content);
+      }
+    };
+
+    var hasLoggedConversion = function(token) {
+      if (token) {
+        return document.cookie.indexOf('loggedConversion=' + token) !== -1;
+      }
+      return false;
+    }
+
+    var setCookieIfConversion = function(token) {
+      if (token) {
+        var twoMonthsFromNow = new Date(Date.now());
+        twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+        document.cookie = 'loggedConversion=' + token + '; expires=' + twoMonthsFromNow;
+      }
+    }
+
+    var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+    if (trekkie.integrations) {
+      return;
+    }
+    trekkie.methods = [
+      'identify',
+      'page',
+      'ready',
+      'track',
+      'trackForm',
+      'trackLink'
+    ];
+    trekkie.factory = function(method) {
+      return function() {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(method);
+        trekkie.push(args);
+        return trekkie;
+      };
+    };
+    for (var i = 0; i < trekkie.methods.length; i++) {
+      var key = trekkie.methods[i];
+      trekkie[key] = trekkie.factory(key);
+    }
+    trekkie.load = function(config) {
+      trekkie.config = config || {};
+      trekkie.config.initialDocumentCookie = document.cookie;
+      var first = document.getElementsByTagName('script')[0];
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.onerror = function(e) {
+        var scriptFallback = document.createElement('script');
+        scriptFallback.type = 'text/javascript';
+        scriptFallback.onerror = function(error) {
+                var Monorail = {
+      produce: function produce(monorailDomain, schemaId, payload) {
+        var currentMs = new Date().getTime();
+        var event = {
+          schema_id: schemaId,
+          payload: payload,
+          metadata: {
+            event_created_at_ms: currentMs,
+            event_sent_at_ms: currentMs
+          }
+        };
+        return Monorail.sendRequest("https://" + monorailDomain + "/v1/produce", JSON.stringify(event));
+      },
+      sendRequest: function sendRequest(endpointUrl, payload) {
+        // Try the sendBeacon API
+        if (window && window.navigator && typeof window.navigator.sendBeacon === 'function' && typeof window.Blob === 'function' && !Monorail.isIos12()) {
+          var blobData = new window.Blob([payload], {
+            type: 'text/plain'
+          });
+
+          if (window.navigator.sendBeacon(endpointUrl, blobData)) {
+            return true;
+          } // sendBeacon was not successful
+
+        } // XHR beacon
+
+        var xhr = new XMLHttpRequest();
+
+        try {
+          xhr.open('POST', endpointUrl);
+          xhr.setRequestHeader('Content-Type', 'text/plain');
+          xhr.send(payload);
+        } catch (e) {
+          console.log(e);
+        }
+
+        return false;
+      },
+      isIos12: function isIos12() {
+        return window.navigator.userAgent.lastIndexOf('iPhone; CPU iPhone OS 12_') !== -1 || window.navigator.userAgent.lastIndexOf('iPad; CPU OS 12_') !== -1;
+      }
+    };
+    Monorail.produce('monorail-edge.shopifysvc.com',
+      'trekkie_storefront_load_errors/1.1',
+      {shop_id: 76611879198,
+      theme_id: 179454509342,
+      app_name: "storefront",
+      context_url: window.location.href,
+      source_url: "//lemonaed.in/cdn/s/trekkie.storefront.5a4f78eb26ea594ba1b5d72f179d68114c7cf8ca.min.js"});
+
+        };
+        scriptFallback.async = true;
+        scriptFallback.src = '//lemonaed.in/cdn/s/trekkie.storefront.5a4f78eb26ea594ba1b5d72f179d68114c7cf8ca.min.js';
+        first.parentNode.insertBefore(scriptFallback, first);
+      };
+      script.async = true;
+      script.src = '//lemonaed.in/cdn/s/trekkie.storefront.5a4f78eb26ea594ba1b5d72f179d68114c7cf8ca.min.js';
+      first.parentNode.insertBefore(script, first);
+    };
+    trekkie.load(
+      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":76611879198,"isMerchantRequest":null,"themeId":179454509342,"themeCityHash":"17502221815344018731","contentLanguage":"en","currency":"INR"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain"},"Session Attribution":{},"S2S":{"facebookCapiEnabled":true,"source":"trekkie-storefront-renderer","apiClientId":580111}}
+    );
+
+    var loaded = false;
+    trekkie.ready(function() {
+      if (loaded) return;
+      loaded = true;
+
+      window.ShopifyAnalytics.lib = window.trekkie;
+
+      var originalDocumentWrite = document.write;
+      document.write = customDocumentWrite;
+      try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+      document.write = originalDocumentWrite;
+
+      window.ShopifyAnalytics.lib.page(null,{"pageType":"home","shopifyEmitted":true});
+
+      var match = window.location.pathname.match(/checkouts\/(.+)\/(thank_you|post_purchase)/)
+      var token = match? match[1]: undefined;
+      if (!hasLoggedConversion(token)) {
+        setCookieIfConversion(token);
+        
+      }
+    });
+
+
+        var eventsListenerScript = document.createElement('script');
+        eventsListenerScript.async = true;
+        eventsListenerScript.src = "//lemonaed.in/cdn/shopifycloud/storefront/assets/shop_events_listener-8675b082.js";
+        document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+
+})();</script>
+<script
+  defer
+  src="https://lemonaed.in/cdn/shopifycloud/perf-kit/shopify-perf-kit-2.0.3.min.js"
+  data-application="storefront-renderer"
+  data-shop-id="76611879198"
+  data-render-region="gcp-us-west1"
+  data-page-type="index"
+  data-theme-instance-id="179454509342"
+  data-theme-name="Prestige"
+  data-theme-version="5.4.3"
+  data-monorail-region="shop_domain"
+  data-resource-timing-sampling-rate="10"
+  data-shs="true"
+  data-shs-beacon="false"
+></script>
+</head><body class="prestige--v4 features--heading-small features--heading-uppercase features--show-image-zooming features--show-element-staggering  template-index"><svg class="u-visually-hidden">
+      <linearGradient id="rating-star-gradient-half">
+        <stop offset="50%" stop-color="var(--product-star-rating)" />
+        <stop offset="50%" stop-color="var(--text-color-light)" />
+      </linearGradient>
+    </svg>
+
+    <a class="PageSkipLink u-visually-hidden" href="#main">Skip to content</a>
+    <span class="LoadingBar"></span>
+    <div class="PageOverlay"></div><div id="shopify-section-popup" class="shopify-section"></div>
+    <div id="shopify-section-sidebar-menu" class="shopify-section"><section id="sidebar-menu" class="SidebarMenu Drawer Drawer--small Drawer--fromLeft" aria-hidden="true" data-section-id="sidebar-menu" data-section-type="sidebar-menu">
+    <header class="Drawer__Header" data-drawer-animated-left>
+      <button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="sidebar-menu" aria-label="Close navigation"><svg class="Icon Icon--close " role="presentation" viewBox="0 0 16 14">
+      <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+    </svg></button>
+    </header>
+
+    <div class="Drawer__Content">
+      <div class="Drawer__Main" data-drawer-animated-left data-scrollable>
+        <div class="Drawer__Container">
+          <nav class="SidebarMenu__Nav SidebarMenu__Nav--primary" aria-label="Sidebar navigation"><div class="Collapsible"><a href="/collections/frontpage" class="Collapsible__Button Heading Link Link--primary u-h6">HOME</a></div><div class="Collapsible"><a href="/collections/all" class="Collapsible__Button Heading Link Link--primary u-h6">SHOP</a></div><div class="Collapsible"><a href="/collections/tops" class="Collapsible__Button Heading Link Link--primary u-h6">TOPS</a></div><div class="Collapsible"><a href="/collections/pants" class="Collapsible__Button Heading Link Link--primary u-h6">Pants</a></div><div class="Collapsible"><a href="https://lemonaed.in/pages/about-us" class="Collapsible__Button Heading Link Link--primary u-h6">ABOUT US</a></div><div class="Collapsible"><a href="https://lemonaed.in/pages/email-subscription" class="Collapsible__Button Heading Link Link--primary u-h6">SUBSCRIBE</a></div><div class="Collapsible"><a href="/a/exchanges-returns" class="Collapsible__Button Heading Link Link--primary u-h6">Exchange and Return</a></div></nav><nav class="SidebarMenu__Nav SidebarMenu__Nav--secondary">
+            <ul class="Linklist Linklist--spacingLoose"><li class="Linklist__Item">
+                  <a href="/account" class="Text--subdued Link Link--primary">Account</a>
+                </li></ul>
+          </nav>
+        </div>
+      </div></div>
+</section>
+
+</div>
+<div id="sidebar-cart" class="Drawer Drawer--fromRight" aria-hidden="true" data-section-id="cart" data-section-type="cart" data-section-settings='{
+  "type": "drawer",
+  "itemCount": 0,
+  "drawer": true,
+  "hasShippingEstimator": false
+}'>
+  <div class="Drawer__Header Drawer__Header--bordered Drawer__Container">
+      <span class="Drawer__Title Heading u-h4">Cart</span>
+
+      <button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="sidebar-cart" aria-label="Close cart"><svg class="Icon Icon--close " role="presentation" viewBox="0 0 16 14">
+      <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+    </svg></button>
+  </div>
+
+  <form class="Cart Drawer__Content" action="/cart" method="POST" novalidate>
+    <div class="Drawer__Main" data-scrollable><p class="Cart__Empty Heading u-h5">Your cart is empty</p></div></form>
+</div>
+<div class="PageContainer">
+      <div id="shopify-section-announcement" class="shopify-section"><section id="section-announcement" data-section-id="announcement" data-section-type="announcement-bar">
+      <div class="AnnouncementBar">
+        <div class="AnnouncementBar__Wrapper">
+          <p class="AnnouncementBar__Content Heading">FREE SHIPPING ALL OVER INDIA
+</p>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      #section-announcement {
+        background: #060606;
+        color: #ffffff;
+      }
+    </style>
+
+    <script>
+      document.documentElement.style.setProperty('--announcement-bar-height', document.getElementById('shopify-section-announcement').offsetHeight + 'px');
+    </script></div>
+      <div id="shopify-section-header" class="shopify-section shopify-section--header"><div id="Search" class="Search" aria-hidden="true">
+  <div class="Search__Inner">
+    <div class="Search__SearchBar">
+      <form action="/search" name="GET" role="search" class="Search__Form">
+        <div class="Search__InputIconWrapper">
+          <span class="hidden-tablet-and-up"><svg class="Icon Icon--search " role="presentation" viewBox="0 0 18 17">
+      <g transform="translate(1 1)" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M16 16l-5.0752-5.0752"></path>
+        <circle cx="6.4" cy="6.4" r="6.4"></circle>
+      </g>
+    </svg></span>
+          <span class="hidden-phone"><svg class="Icon Icon--search-desktop " role="presentation" viewBox="0 0 21 21">
+      <g transform="translate(1 1)" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M18 18l-5.7096-5.7096"></path>
+        <circle cx="7.2" cy="7.2" r="7.2"></circle>
+      </g>
+    </svg></span>
+        </div>
+
+        <input type="search" class="Search__Input Heading" name="q" autocomplete="off" autocorrect="off" autocapitalize="off" aria-label="Search..." placeholder="Search..." autofocus>
+        <input type="hidden" name="type" value="product">
+      </form>
+
+      <button class="Search__Close Link Link--primary" data-action="close-search" aria-label="Close search"><svg class="Icon Icon--close " role="presentation" viewBox="0 0 16 14">
+      <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+    </svg></button>
+    </div>
+
+    <div class="Search__Results" aria-hidden="true"><div class="PageLayout PageLayout--breakLap">
+          <div class="PageLayout__Section"></div>
+          <div class="PageLayout__Section PageLayout__Section--secondary"></div>
+        </div></div>
+  </div>
+</div><header id="section-header"
+        class="Header Header--sidebar Header--initialized  Header--withIcons"
+        data-section-id="header"
+        data-section-type="header"
+        data-section-settings='{
+  "navigationStyle": "sidebar",
+  "hasTransparentHeader": false,
+  "isSticky": false
+}'
+        role="banner">
+  <div class="Header__Wrapper">
+    <div class="Header__FlexItem Header__FlexItem--fill">
+      <button class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable " aria-expanded="false" data-action="open-drawer" data-drawer-id="sidebar-menu" aria-label="Open navigation">
+        <span class="hidden-tablet-and-up"><svg class="Icon Icon--nav " role="presentation" viewBox="0 0 20 14">
+      <path d="M0 14v-1h20v1H0zm0-7.5h20v1H0v-1zM0 0h20v1H0V0z" fill="currentColor"></path>
+    </svg></span>
+        <span class="hidden-phone"><svg class="Icon Icon--nav-desktop " role="presentation" viewBox="0 0 24 16">
+      <path d="M0 15.985v-2h24v2H0zm0-9h24v2H0v-2zm0-7h24v2H0v-2z" fill="currentColor"></path>
+    </svg></span>
+      </button></div><div class="Header__FlexItem Header__FlexItem--logo"><h1 class="Header__Logo"><a href="/" class="Header__LogoLink"><img class="Header__LogoImage Header__LogoImage--primary"
+               src="//lemonaed.in/cdn/shop/files/LEMONAED_LOGO_small_5aac654f-b278-44ca-a4c8-8ef359202b6e_50x.png?v=1712564972"
+               srcset="//lemonaed.in/cdn/shop/files/LEMONAED_LOGO_small_5aac654f-b278-44ca-a4c8-8ef359202b6e_50x.png?v=1712564972 1x, //lemonaed.in/cdn/shop/files/LEMONAED_LOGO_small_5aac654f-b278-44ca-a4c8-8ef359202b6e_50x@2x.png?v=1712564972 2x"
+               width="900"
+               height="600"
+               alt="Lemonaed "></a></h1></div>
+
+    <div class="Header__FlexItem Header__FlexItem--fill"><a href="/account" class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable hidden-phone"><svg class="Icon Icon--account " role="presentation" viewBox="0 0 20 20">
+      <g transform="translate(1 1)" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M0 18c0-4.5188182 3.663-8.18181818 8.18181818-8.18181818h1.63636364C14.337 9.81818182 18 13.4811818 18 18"></path>
+        <circle cx="9" cy="4.90909091" r="4.90909091"></circle>
+      </g>
+    </svg></a><a href="/search" class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable " data-action="toggle-search" aria-label="Search">
+        <span class="hidden-tablet-and-up"><svg class="Icon Icon--search " role="presentation" viewBox="0 0 18 17">
+      <g transform="translate(1 1)" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M16 16l-5.0752-5.0752"></path>
+        <circle cx="6.4" cy="6.4" r="6.4"></circle>
+      </g>
+    </svg></span>
+        <span class="hidden-phone"><svg class="Icon Icon--search-desktop " role="presentation" viewBox="0 0 21 21">
+      <g transform="translate(1 1)" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M18 18l-5.7096-5.7096"></path>
+        <circle cx="7.2" cy="7.2" r="7.2"></circle>
+      </g>
+    </svg></span>
+      </a>
+
+      <a href="/cart" class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable " data-action="open-drawer" data-drawer-id="sidebar-cart" aria-expanded="false" aria-label="Open cart">
+        <span class="hidden-tablet-and-up"><svg class="Icon Icon--cart " role="presentation" viewBox="0 0 17 20">
+      <path d="M0 20V4.995l1 .006v.015l4-.002V4c0-2.484 1.274-4 3.5-4C10.518 0 12 1.48 12 4v1.012l5-.003v.985H1V19h15V6.005h1V20H0zM11 4.49C11 2.267 10.507 1 8.5 1 6.5 1 6 2.27 6 4.49V5l5-.002V4.49z" fill="currentColor"></path>
+    </svg></span>
+        <span class="hidden-phone"><svg class="Icon Icon--cart-desktop " role="presentation" viewBox="0 0 19 23">
+      <path d="M0 22.985V5.995L2 6v.03l17-.014v16.968H0zm17-15H2v13h15v-13zm-5-2.882c0-2.04-.493-3.203-2.5-3.203-2 0-2.5 1.164-2.5 3.203v.912H5V4.647C5 1.19 7.274 0 9.5 0 11.517 0 14 1.354 14 4.647v1.368h-2v-.912z" fill="currentColor"></path>
+    </svg></span>
+        <span class="Header__CartDot "></span>
+      </a>
+    </div>
+  </div>
+
+
+</header>
+
+<style>:root {
+      --use-sticky-header: 0;
+      --use-unsticky-header: 1;
+    }.Header__LogoImage {
+      max-width: 50px;
+    }
+
+    @media screen and (max-width: 640px) {
+      .Header__LogoImage {
+        max-width: 60px;
+      }
+    }:root {
+      --header-is-not-transparent: 1;
+      --header-is-transparent: 0;
+    }</style>
+
+<script>
+  document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-header').offsetHeight + 'px');
+</script>
+
+</div>
+
+      <main id="main" role="main">
+        <div id="shopify-section-template--24894406230302__slideshow" class="shopify-section shopify-section--slideshow"><section id="section-template--24894406230302__slideshow" data-section-id="template--24894406230302__slideshow" data-section-type="slideshow">
+  <div class="Slideshow ">
+    <div class="Slideshow__Carousel Slideshow__Carousel--withScrollButton Carousel Carousel--fadeIn  Carousel--insideDots"
+         data-flickity-config='{
+  "prevNextButtons": false,
+  "setGallerySize": true,
+  "adaptiveHeight": true,
+  "wrapAround": true,
+  "dragThreshold": 15,
+  "pauseAutoPlayOnHover": false,
+  "autoPlay": false,
+  "pageDots": false
+}'><div id="Slideslide-0" class="Slideshow__Slide Carousel__Cell is-selected" style="visibility: visible" data-slide-index="0" ><div class="Slideshow__ImageContainer  AspectRatio hidden-tablet-and-up"
+                 style="--aspect-ratio: 0.8060407569141194; background-image: url(//lemonaed.in/cdn/shop/files/IMG_7307_2_ed396332-bd91-4bd8-bf1f-f362bef55cfe_1x1.png.jpg?v=1742124586)">
+                <img class="Slideshow__Image Image--lazyLoad"
+                     src="//lemonaed.in/cdn/shop/files/IMG_7307_2_ed396332-bd91-4bd8-bf1f-f362bef55cfe_1x1.png?v=1742124586"
+                     data-src="//lemonaed.in/cdn/shop/files/IMG_7307_2_ed396332-bd91-4bd8-bf1f-f362bef55cfe_x800.png?v=1742124586"
+                     alt="">
+
+                <noscript>
+                  <img class="Slideshow__Image" src="//lemonaed.in/cdn/shop/files/IMG_7307_2_ed396332-bd91-4bd8-bf1f-f362bef55cfe_x800.png?v=1742124586" alt="">
+                </noscript>
+            </div><div class="Slideshow__ImageContainer  AspectRatio AspectRatio--withFallback hidden-phone"
+                 style="padding-bottom: 52.2%; --aspect-ratio: 1.9157088122605364; background-image: url(//lemonaed.in/cdn/shop/files/fffdd_2_1x1.png.jpg?v=1725820246)">
+              
+
+              <img class="Slideshow__Image Image--lazyLoad hide-no-js"
+                   data-src="//lemonaed.in/cdn/shop/files/fffdd_2_{width}x.png?v=1725820246"
+                   data-optimumx="1.2"
+                   data-widths="[400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200]"
+                   data-sizes="auto"
+                   alt="">
+
+              <noscript>
+                <img class="Slideshow__Image" src="//lemonaed.in/cdn/shop/files/fffdd_2_1000x.png?v=1725820246" alt="">
+              </noscript>
+            </div><div class="Slideshow__Content Slideshow__Content--middleCenter">
+              <header class="SectionHeader">
+                <div class="SectionHeader__ButtonWrapper">
+                <div class="ButtonGroup ButtonGroup--spacingSmall "><a href="/products/denim-pleated-trousers" class="ButtonGroup__Item Button">SHOP NOW</a></div>
+              </div>
+              </header>
+            </div></div></div><button data-href="#section-template--24894406230302__slideshow-end" class="Slideshow__ScrollButton RoundButton RoundButton--medium" aria-label="Scroll to content" data-animate-bottom><svg class="Icon Icon--arrow-bottom " role="presentation" viewBox="0 0 21 11">
+      <polyline fill="none" stroke="currentColor" points="0.5 0.5 10.5 10.5 20.5 0.5" stroke-width="1.25"></polyline>
+    </svg></button></div>
+
+  <span id="section-template--24894406230302__slideshow-end" class="Anchor"></span>
+</section>
+
+<style>
+  #section-template--24894406230302__slideshow .Heading,
+   #section-template--24894406230302__slideshow .flickity-page-dots {
+    color: #201a1a;
+  }
+
+  #section-template--24894406230302__slideshow .Button {
+    color: #ede6e6;
+    border-color: #1b1616;
+  }
+
+  #section-template--24894406230302__slideshow .Button::before {
+    background-color: #1b1616;
+  }</style>
+
+</div><div id="shopify-section-template--24894406230302__featured_collections_hE99c4" class="shopify-section shopify-section--bordered"><section class="Section Section--spacingNormal" data-section-id="template--24894406230302__featured_collections_hE99c4" data-section-type="featured-collections" data-settings='{
+  "layout": "carousel"
+}'>
+  <header class="SectionHeader SectionHeader--center">
+    <div class="Container"><h2 class="SectionHeader__Heading Heading u-h1">featured collection</h2></div>
+  </header><div class="TabPanel" id="block-collection_xXXnMm" aria-hidden="false" role="tabpanel" >
+      <div class="ProductListWrapper"><div class="ProductList ProductList--carousel Carousel" data-flickity-config='{
+    "prevNextButtons": true,
+    "pageDots": false,
+    "wrapAround": false,
+    "contain": true,
+    "cellAlign": "center",
+    "watchCSS": true,
+    "dragThreshold": 8,
+    "groupCells": true,
+    "arrowShape": {"x0": 20, "x1": 60, "y1": 40, "x2": 60, "y2": 35, "x3": 25}
+  }'><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/aurora" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 2263px; padding-bottom: 126.99955810870527%; --aspect-ratio: 0.7874043145441892"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/aurorafakedrop_{width}x.jpg?v=1752389155" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="AURORA" data-media-id="52970265411870">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/IMG_3136_600x.png?v=1754130247" alt="AURORA">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/aurorafakedrop_600x.jpg?v=1752389155" alt="AURORA">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          
+          
+            <span class="ProductItem__Label Heading Text--subdued badge badge-new-drop">New Drop</span>
+          
+          
+
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/aurora">AURORA</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,780</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/camoflauge" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 2696px; padding-bottom: 125.0%; --aspect-ratio: 0.8"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/camo_front_mockup_{width}x.png?v=1754046699" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="FOREST SKIN CAMOUFLAGE" data-media-id="53060826333470">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/camo_back_mockup_600x.png?v=1754046699" alt="FOREST SKIN CAMOUFLAGE">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/camo_front_mockup_600x.png?v=1754046699" alt="FOREST SKIN CAMOUFLAGE">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          
+          
+            <span class="ProductItem__Label Heading Text--subdued badge badge-new-drop">New Drop</span>
+          
+          
+
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/camoflauge">FOREST SKIN CAMOUFLAGE</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,780</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/soaring-high" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 1084px; padding-bottom: 123.61623616236163%; --aspect-ratio: 0.808955223880597"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/IMG_0899_{width}x.jpg?v=1729237867" data-widths="[200,400,600,700,800,900,1000]" data-sizes="auto" alt="SOARING HIGH" data-media-id="40041932488990">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/rrr_1_600x.png?v=1729237892" alt="SOARING HIGH">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/IMG_0899_600x.jpg?v=1729237867" alt="SOARING HIGH">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          
+            <span class="ProductItem__Label Heading Text--subdued badge">Best Seller</span>
+          
+          
+          
+
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/soaring-high">SOARING HIGH</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,480</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/denim-pleated-trousers" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 1080px; padding-bottom: 124.9074074074074%; --aspect-ratio: 0.8005930318754633"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/pleatedfront_{width}x.jpg?v=1742108161" data-widths="[200,400,600,700,800,900,1000]" data-sizes="auto" alt="DENIM PLEATED TROUSERS" data-media-id="52388779524382">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/pleated_back_600x.jpg?v=1742108172" alt="DENIM PLEATED TROUSERS">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/pleatedfront_600x.jpg?v=1742108161" alt="DENIM PLEATED TROUSERS">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          
+          
+            <span class="ProductItem__Label Heading Text--subdued badge badge-new-drop">New Drop</span>
+          
+          
+
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/denim-pleated-trousers">DENIM PLEATED TROUSERS</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 3,280</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/soaring-high-grey" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 994px; padding-bottom: 126.05633802816901%; --aspect-ratio: 0.7932960893854749"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/IMAGE-EDIT_b17ea1fe-56a5-4793-8b92-3f4b6cd7ce3a_{width}x.png?v=1743620549" data-widths="[200,400,600,700,800,900]" data-sizes="auto" alt="Soaring High V2" data-media-id="52454432342302">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/rn-image_picker_lib_temp_5d9ab7e4-a43b-4802-b3c0-ace61733fc84_600x.png?v=1743620797" alt="Soaring High V2">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/IMAGE-EDIT_b17ea1fe-56a5-4793-8b92-3f4b6cd7ce3a_600x.png?v=1743620549" alt="Soaring High V2">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          
+          
+            <span class="ProductItem__Label Heading Text--subdued badge badge-new-drop">New Drop</span>
+          
+          
+
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/soaring-high-grey">Soaring High V2</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 3,280</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/flying-chyrsaor-2-0" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 2602px; padding-bottom: 126.17217524980785%; --aspect-ratio: 0.7925677733780079"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/pegasus_ground_mockup_2_{width}x.png?v=1744030565" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="FLYING CHRYSAOR" data-media-id="52499158368542">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/rn-image_picker_lib_temp_a27979fe-65a9-4d15-8689-80247c0c1a14_600x.png?v=1744040549" alt="FLYING CHRYSAOR">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/pegasus_ground_mockup_2_600x.png?v=1744030565" alt="FLYING CHRYSAOR">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          
+            <span class="ProductItem__Label Heading Text--subdued badge">Best Seller</span>
+          
+          
+          
+
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/flying-chyrsaor-2-0">FLYING CHRYSAOR</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,480</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/escapade" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 1744px; padding-bottom: 127.5229357798165%; --aspect-ratio: 0.7841726618705036"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/IMG_8853_08fba354-8f4b-46fd-b4c3-256faf2be672_{width}x.png?v=1744975122" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="ESCAPADE" data-media-id="52569488458014">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/back_tapestry_2_600x.png?v=1744975023" alt="ESCAPADE">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/IMG_8853_08fba354-8f4b-46fd-b4c3-256faf2be672_600x.png?v=1744975122" alt="ESCAPADE">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          <span class="ProductItem__Label ProductItem__Label--soldOut Heading Text--subdued">Sold out</span>
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/escapade">ESCAPADE</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 3,380</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/god-of-love" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 1101px; padding-bottom: 123.88737511353315%; --aspect-ratio: 0.8071847507331378"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/IMG_0944_46eae53a-d666-44f8-8dd7-07feac373e29_{width}x.jpg?v=1729197015" data-widths="[200,400,600,700,800,900,1000]" data-sizes="auto" alt="GOD OF LOVE" data-media-id="40039434715422">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/gol_3456_600x.png?v=1729239149" alt="GOD OF LOVE">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/IMG_0944_46eae53a-d666-44f8-8dd7-07feac373e29_600x.jpg?v=1729197015" alt="GOD OF LOVE">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          <span class="ProductItem__Label ProductItem__Label--soldOut Heading Text--subdued">Sold out</span>
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/god-of-love">GOD OF LOVE</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,680</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/angelic-wave" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 1082px; padding-bottom: 124.02957486136785%; --aspect-ratio: 0.8062593144560357"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/beige_hanger_2_{width}x.png?v=1729196154" data-widths="[200,400,600,700,800,900,1000]" data-sizes="auto" alt="ANGELIC WAVE" data-media-id="40039364919582">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/CREATIVE_3_1_600x.png?v=1728202167" alt="ANGELIC WAVE">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/beige_hanger_2_600x.png?v=1729196154" alt="ANGELIC WAVE">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          <span class="ProductItem__Label ProductItem__Label--soldOut Heading Text--subdued">Sold out</span>
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/angelic-wave">ANGELIC WAVE</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,780</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/rescilience" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 1082px; padding-bottom: 123.10536044362293%; --aspect-ratio: 0.8123123123123123"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/resilence_hanger_{width}x.png?v=1729196321" data-widths="[200,400,600,700,800,900,1000]" data-sizes="auto" alt="RESILIENCE" data-media-id="40039382483230">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/resilience_model_3_final_600x.png?v=1728198392" alt="RESILIENCE">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/resilence_hanger_600x.png?v=1729196321" alt="RESILIENCE">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          <span class="ProductItem__Label ProductItem__Label--soldOut Heading Text--subdued">Sold out</span>
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/rescilience">RESILIENCE</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,680</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/serenity-club" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 2200px; padding-bottom: 125.0%; --aspect-ratio: 0.8"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/IMG_1258_{width}x.png?v=1729707597" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="SERENITY CLUB" data-media-id="40078967669022">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/serenity_club_mockup_600x.png?v=1729610398" alt="SERENITY CLUB">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/IMG_1258_600x.png?v=1729707597" alt="SERENITY CLUB">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          <span class="ProductItem__Label ProductItem__Label--soldOut Heading Text--subdued">Sold out</span>
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/serenity-club">SERENITY CLUB</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 1,980</span></span></div></div></div></div></div><div class="Carousel__Cell"><div class="ProductItem ">
+  <div class="ProductItem__Wrapper"><a href="/products/lavaliere" class="ProductItem__ImageWrapper "><div class="AspectRatio AspectRatio--withFallback" style="max-width: 3096px; padding-bottom: 132.81653746770024%; --aspect-ratio: 0.7529182879377432"><img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="//lemonaed.in/cdn/shop/files/hand_back_lemonaed_mockup_2_{width}x.png?v=1726652193" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="LAVALIERE" data-media-id="39817811525918">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="//lemonaed.in/cdn/shop/files/IMG_9728_600x.jpg?v=1726642286" alt="LAVALIERE">
+          <img class="ProductItem__Image" src="//lemonaed.in/cdn/shop/files/hand_back_lemonaed_mockup_2_600x.png?v=1726652193" alt="LAVALIERE">
+        </noscript>
+      </div>
+    </a><div class="ProductItem__LabelList">
+          <span class="ProductItem__Label ProductItem__Label--soldOut Heading Text--subdued">Sold out</span>
+        </div><div class="ProductItem__Info ProductItem__Info--center"><h2 class="ProductItem__Title Heading">
+          <a href="/products/lavaliere">LAVALIERE</a>
+        </h2><div class="ProductItem__PriceList  Heading"><span class="ProductItem__Price Price Text--subdued"><span class=money>Rs. 2,780</span></span></div></div></div></div></div></div></div><div class="Container">
+          <div class="SectionFooter">
+            <a href="/collections/new-drops" class="Button Button--primary">View all</a>
+          </div>
+        </div></div></section></div><div id="shopify-section-template--24894406230302__text_with_image_9VEqbE" class="shopify-section shopify-section--bordered"><section class="Section "><div class="FeatureText FeatureText--withImage FeatureText--imageLeft"><div class="FeatureText__ImageWrapper"><div class="AspectRatio" style="max-width: 1290px; --aspect-ratio: 0.5625817706061927"><img class="Image--lazyLoad Image--slideLeft" data-src="//lemonaed.in/cdn/shop/files/TOP_SELLER_3f933d2f-f557-46e4-b6cc-69654a171e1e_{width}x.png?v=1729072758" data-expand="-200" data-widths="[400,600,700,800,900,1000,1200]" data-sizes="auto" alt="">
+          <noscript>
+            <img src="//lemonaed.in/cdn/shop/files/TOP_SELLER_3f933d2f-f557-46e4-b6cc-69654a171e1e_800x.png?v=1729072758" alt="">
+          </noscript>
+        </div>
+      </div><div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content"><header class="SectionHeader"><div class="SectionHeader__Description Rte">
+                <p><strong>Made from 100% Organic Cotton</strong></p><p>Heavyweight Single Jersey Fabric</p><p><strong>40-Inch Screen Print Design</strong></p><p>Subtle Detailing</p><p><strong>Signature Minimalistic Lemonaed Logo</strong></p>
+              </div><a href="/products/soaring-high" class="Link Link--underline">Shop our best seller</a></header></div>
+    </div></div>
+</section>
+
+<style> #shopify-section-template--24894406230302__text_with_image_9VEqbE p {text-align: center; font-family: ;} #shopify-section-template--24894406230302__text_with_image_9VEqbE .FeatureText__Content {text-align: center;} #shopify-section-template--24894406230302__text_with_image_9VEqbE .Link {padding-top: 55px;} #shopify-section-template--24894406230302__text_with_image_9VEqbE .Link--underline {background-color: black; margin-top: 45px; color: white; padding: 7px 10px; border-radius: 20px;} </style></div><div id="shopify-section-template--24894406230302__text_with_image_86XH6W" class="shopify-section shopify-section--bordered"><section class="Section "><div class="FeatureText FeatureText--withImage FeatureText--imageRight"><div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content"><header class="SectionHeader"><div class="SectionHeader__Description Rte">
+                <p>A selection of carefully curated high-quality pieces that seamlessly work with the rest of your wardrobe.</p>
+              </div><a href="/collections/frontpage" class="Link Link--underline">Shop Now</a></header></div>
+    </div><div class="FeatureText__ImageWrapper"><div class="AspectRatio" style="max-width: 3120px; --aspect-ratio: 0.75"><img class="Image--lazyLoad Image--slideRight" data-src="//lemonaed.in/cdn/shop/files/2_f29d5b81-ae22-47bb-b45f-f96e4133b95a_{width}x.jpg?v=1729098167" data-expand="-200" data-widths="[400,600,700,800,900,1000,1200]" data-sizes="auto" alt="">
+          <noscript>
+            <img src="//lemonaed.in/cdn/shop/files/2_f29d5b81-ae22-47bb-b45f-f96e4133b95a_800x.jpg?v=1729098167" alt="">
+          </noscript>
+        </div>
+      </div></div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__custom_liquid_b6J7AY" class="shopify-section shopify-section--bordered"><section class="Section Section--spacingNormal" id="section-template--24894406230302__custom_liquid_b6J7AY">
+  <div class="Container"><header class="SectionHeader SectionHeader--center"><h3 class="SectionHeader__SubHeading Heading u-h6">Style for Every Occasion</h3></header><div class="Liquid">
+      
+    </div>
+  </div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__text_with_image_XETUnA" class="shopify-section shopify-section--bordered"><section class="Section "><div class="FeatureText FeatureText--withImage FeatureText--imageLeft"><div class="FeatureText__ImageWrapper"><div class="AspectRatio" style="max-width: 3328px; --aspect-ratio: 0.8"><img class="Image--lazyLoad Image--slideLeft" data-src="//lemonaed.in/cdn/shop/files/pants_new_1_{width}x.png?v=1729195293" data-expand="-200" data-widths="[400,600,700,800,900,1000,1200]" data-sizes="auto" alt="">
+          <noscript>
+            <img src="//lemonaed.in/cdn/shop/files/pants_new_1_800x.png?v=1729195293" alt="">
+          </noscript>
+        </div>
+      </div><div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content"><header class="SectionHeader"><h3 class="SectionHeader__SubHeading Heading u-h6">Bold looks to stand out at any event.</h3><div class="SectionHeader__Description Rte">
+                <p>Turn heads with bold, eye-catching pieces that are perfect for making a statement. Our standout designs ensure you’ll be the center of attention at any event.</p><h3></h3>
+              </div><a href="/products/paradise" class="Link Link--underline">Shop now</a></header></div>
+    </div></div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__text_with_image_fjdq8q" class="shopify-section shopify-section--bordered"><section class="Section "><div class="FeatureText FeatureText--withImage FeatureText--imageRight"><div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content"><header class="SectionHeader"><h3 class="SectionHeader__SubHeading Heading u-h6">Effortlessly stylish for an unforgettable evening</h3><div class="SectionHeader__Description Rte">
+                <p>Feel confident and effortlessly stylish with our sleek, curated looks for a special night out. These pieces blend comfort with sophistication for the perfect date night ensemble.</p><h3></h3>
+              </div><a href="/products/god-of-love" class="Link Link--underline">Shop now</a></header></div>
+    </div><div class="FeatureText__ImageWrapper"><div class="AspectRatio" style="max-width: 3120px; --aspect-ratio: 0.75"><img class="Image--lazyLoad Image--slideRight" data-src="//lemonaed.in/cdn/shop/files/1_7d3916a2-d6a3-4515-ad7a-55b5550ac72d_{width}x.jpg?v=1729162675" data-expand="-200" data-widths="[400,600,700,800,900,1000,1200]" data-sizes="auto" alt="">
+          <noscript>
+            <img src="//lemonaed.in/cdn/shop/files/1_7d3916a2-d6a3-4515-ad7a-55b5550ac72d_800x.jpg?v=1729162675" alt="">
+          </noscript>
+        </div>
+      </div></div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__text_with_image_piKK4U" class="shopify-section shopify-section--bordered"><section class="Section "><div class="FeatureText FeatureText--withImage FeatureText--imageLeft"><div class="FeatureText__ImageWrapper"><div class="AspectRatio" style="max-width: 3067px; --aspect-ratio: 0.7502446183953033"><img class="Image--lazyLoad Image--slideLeft" data-src="//lemonaed.in/cdn/shop/files/resilience_model_3_final_{width}x.png?v=1728198392" data-expand="-200" data-widths="[400,600,700,800,900,1000,1200]" data-sizes="auto" alt="">
+          <noscript>
+            <img src="//lemonaed.in/cdn/shop/files/resilience_model_3_final_800x.png?v=1728198392" alt="">
+          </noscript>
+        </div>
+      </div><div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content"><header class="SectionHeader"><h3 class="SectionHeader__SubHeading Heading u-h6">Laid-back pieces perfect for a relaxed day out.</h3><div class="SectionHeader__Description Rte">
+                <p>Stay comfortable and stylish with relaxed fits and soft fabrics. Whether it’s a morning coffee or a weekend stroll, these pieces are perfect for laid-back days.</p>
+              </div><a href="/products/rescilience" class="Link Link--underline">Shop now</a></header></div>
+    </div></div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__video_with_text_4PJQhD" class="shopify-section video_with_text"><!-- video with text section -->
+<div id="vid-txt-template--24894406230302__video_with_text_4PJQhD" class="vid-text-con">
+<div class="vid-text-wra page-width" >
+<div class="vid-with-text-box" style="background:#fbfbfb">
+<div class="text-content">
+<div class="content">
+<h2>Elevating innovative designs into wearable art.</h2>
+<p>With a blend of artistry and technology, we transform concepts into wearable masterpieces. From initial sketches crafted on advanced design software to detailed 3D renders, each step of the process is a testament to our commitment to detail. Through expert pattern-making, cutting, and stitching, we bring visionary designs to life, turning innovation into fashion that embodies both creativity and craftsmanship.</p>
+<div class="section-btn">
+<a class="btn" href=""></a>
+</div>
+</div>
+</div>
+<div class="video-section">
+<div class="m_video">
+
+
+<video width="100%" height="100%" controls autoplay loop poster="//lemonaed.in/cdn/shop/files/new_image_cd17e71c-4d1c-4a33-ad2d-6d2866e232d1.png?v=1729097965">
+<source src="https://cdn.shopify.com/videos/c/o/v/afc8694bbc8b4253a5d980abac9ccc0b.mp4" type="video/mp4">
+<source src="https://cdn.shopify.com/videos/c/o/v/afc8694bbc8b4253a5d980abac9ccc0b.mp4" type="video/ogg">
+</video>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<style>
+.vid-text-wra {
+margin-top: 30px;
+padding-top: 40px;
+padding-bottom: 40px;
+}
+.vid-with-text-box {
+display: flex;
+align-items: center;
+padding: 0px;
+}
+.text-content {
+width: 50%;
+padding: 80px;
+}
+.content h2 {
+font-size: 28px;
+line-height: 36px;
+padding-bottom: 20px;
+}
+.content p {
+font-size: 18px;
+letter-spacing: 0.5px;
+}
+.video-section {
+width: 50%;
+height: 100%;
+}
+.m_video {
+height: 100%;
+}
+.m_video video {
+height: 100%;
+width: 100%;
+object-fit: cover;
+}
+.section-btn {
+margin-top: 40px;
+}
+
+
+@media only screen and (max-width: 992px) {
+
+.vid-with-text-box{
+flex-direction: column-reverse;
+}
+
+.text-content {
+width: 100%;
+}
+.video-section {
+width: 100%;
+}
+.vid-with-text-box {
+padding: 0px 0px;
+}
+.text-content {
+width: 100%;
+padding: 20px 15px 20px;
+}
+.content h2 {
+font-size: 24px;
+line-height: 32px;
+padding-bottom: 10px;
+}
+}
+</style>
+
+ 
+
+
+
+
+
+<style> #shopify-section-template--24894406230302__video_with_text_4PJQhD video {height: 700px;} #shopify-section-template--24894406230302__video_with_text_4PJQhD , #shopify-section-template--24894406230302__video_with_text_4PJQhD h2 {font-family: "Nunito Sans", sans-serif; font-size: 20px; font-weight: 700;} #shopify-section-template--24894406230302__video_with_text_4PJQhD , #shopify-section-template--24894406230302__video_with_text_4PJQhD p {font-family: "Nunito Sans", sans-serif; font-size: 14px; font-weight: 400;} </style></div><div id="shopify-section-template--24894406230302__marquee_HkzxkB" class="shopify-section"><style>
+  .section-template--24894406230302__marquee_HkzxkB.custom-marquee {
+    display: flex;
+    align-items: center;
+    height: 46px;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+    background:#000000; 
+    color:#ffffff; 
+  }
+  .section-template--24894406230302__marquee_HkzxkB.custom-marquee a {
+    color:#ffffff; 
+    text-decoration: none;
+  }
+  .section-template--24894406230302__marquee_HkzxkB.custom-marquee .track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 12s linear infinite;
+  }
+  .section-template--24894406230302__marquee_HkzxkB.custom-marquee .content {
+    margin-left: 40px;
+    font-size: 12px;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-20%);
+    }
+  }
+</style>
+  <div class="section-template--24894406230302__marquee_HkzxkB custom-marquee " role="region" ><div class="track "><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span><span class="content marquee-text">SHIPPING WORLDWIDE</span></div></div>
+</div><div id="shopify-section-template--24894406230302__custom_liquid_Jm64eT" class="shopify-section shopify-section--bordered"><section class="Section Section--spacingNormal" id="section-template--24894406230302__custom_liquid_Jm64eT">
+  <div class="Container"><header class="SectionHeader SectionHeader--center"><h3 class="SectionHeader__SubHeading Heading u-h6">TESTIMONIALS</h3></header><div class="Liquid">
+      <style>
+ #section-template--22598068994334__custom_liquid_Jm64eT{
+ padding: 0px 0px;
+margin-top: 30px;
+}
+</style>
+    </div>
+  </div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__171627341936672d68" class="shopify-section"><div class="Container"><div id="shopify-block-AR1JUTzhZbythTUJaN__judge_me_reviews_featured_carousel_cc6b9B" class="shopify-block shopify-app-block"><div style="margin:0 auto;max-width:1080px;">
+  <div class='jdgm-carousel-wrapper'>
+      <div class="jdgm-carousel-title-and-link">
+        <h2 class='jdgm-carousel-title'>Let customers speak for us</h2>
+        <span class="jdgm-all-reviews-rating-wrapper" href="javascript:void(0)">
+          <span style="display:block" data-score='4.95' class='jdgm-all-reviews-rating' aria-label='4.95 stars' tabindex='0' role='img'></span>
+          <span style="display: block" class='jdgm-carousel-number-of-reviews' data-number-of-reviews='150'>
+            from 150 reviews
+          </span>
+        </span>
+      </div>
+    <section class='jdgm-widget jdgm-carousel jdgm-carousel--focused-theme' data-widget-locale='en'> <style>.jdgm-carousel{display: none}</style> <style> .jdgm-xx{left:0}.jdgm-carousel-wrapper .jdgm-carousel__arrows .jdgm-carousel__right-arrow,.jdgm-carousel-wrapper .jdgm-carousel__arrows .jdgm-carousel__left-arrow{border-color:#EEEEEE}.jdgm-carousel-title-and-link{width:calc(100% - 81px);margin:0 auto 24px auto}.jdgm-carousel-wrapper .jdgm-widget.jdgm-carousel{width:calc(100% - 81px);margin:0 auto}.jdgm-carousel-wrapper .jdgm-carousel__left-arrow{float:left;margin-left:-25px;margin-top:-150.0px}.jdgm-carousel-wrapper .jdgm-carousel__right-arrow{float:right;margin-right:-25px;margin-top:-150.0px}.jdgm-carousel-item__timestamp{display:none !important}.jdgm-carousel-item__product-title{display:none !important}.jdgm-carousel-title-and-link{display:none !important}.jdgm-carousel--focused-theme .jdgm-carousel-item{width:100%}.jdgm-carousel--focused-theme .jdgm-carousel-item__left-column{width:200px;display:inline-block;text-align:center;vertical-align:top}.jdgm-carousel--focused-theme .jdgm-carousel-item__review{text-align:left;height:calc(100% - 0em)}.jdgm-carousel--focused-theme .jdgm-carousel-item__review-wrapper{display:inline-block;vertical-align:middle;width:calc(60% - 200px);padding:0 12px;height:100%}.jdgm-carousel--focused-theme .jdgm-carousel-item__product{text-align:left}.jdgm-carousel--focused-theme .jdgm-carousel-item__reviewer-name{font-size:120%;opacity:1;line-height:1.4;padding-bottom:0;font-weight:600}.jdgm-carousel--focused-theme .jdgm-carousel-item__timestamp{font-size:100%;font-style:normal;opacity:1;line-height:1.4}.jdgm-carousel--focused-theme .jdgm-carousel-item__image-wrapper{display:inline-block;vertical-align:middle;width:40%;height:100%}.jdgm-carousel--focused-theme .jdgm-carousel-item__reviewer-name-wrapper{text-align:left}.jdgm-carousel--focused-theme .jdgm-carousel-item{padding:0 8px}@media only screen and (max-width: 768px){.jdgm-carousel--focused-theme .jdgm-carousel-item__review-wrapper{width:calc(75% - 200px)}.jdgm-carousel--focused-theme .jdgm-carousel-item__image-wrapper{width:25%}.jdgm-carousel--focused-theme .jdgm-carousel-item__product-image{height:auto;width:100%}}@media only screen and (max-width: 576px){.jdgm-carousel--focused-theme .jdgm-carousel-item__left-column{padding:0 12px;width:100%;display:block;margin-bottom:8px}.jdgm-carousel--focused-theme .jdgm-carousel-item__product,.jdgm-carousel--focused-theme .jdgm-carousel-item__review{text-align:center}.jdgm-carousel--focused-theme .jdgm-carousel-item__timestamp{display:inline-block;vertical-align:middle;width:50%;text-align:left;margin-left:4px}.jdgm-carousel--focused-theme .jdgm-carousel-item__review-rating{display:inline-block;width:50%;text-align:right;font-size:100%;margin-right:4px}.jdgm-carousel--focused-theme .jdgm-carousel-item__review-wrapper{height:calc(72% - 3em);width:100%;display:block}.jdgm-carousel--focused-theme .jdgm-carousel-item__image-wrapper{height:28%;width:100%;display:block}.jdgm-carousel--focused-theme .jdgm-carousel-item__product-image{height:100%;width:auto}}
+ </style> <style>  </style> <div class='jdgm-carousel__item-container'> <div class='jdgm-carousel__item-wrapper'><div class='jdgm-carousel-item' data-review-id='ed7898fe-94a4-4428-a0a4-c30b6aae785a'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Jay verma </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/08/2024'> 11/08/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Unmatched Quality and Attention to Detail</div> <div class='jdgm-carousel-item__review-body'><p>I've ordered from a lot of brands, but the attention to detail and the quality here are next level</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1731050119__img_221__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1731050119__img_221__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='a0ddd4b6-0809-47ce-a83c-16990ac71730'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Shubham </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/07/2024'> 11/07/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Love It!</div> <div class='jdgm-carousel-item__review-body'><p>The colour and graphic is unique</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1731007550__golrev1__original.png?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1731007550__golrev1__original.png?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='f68b544f-eb5d-407b-9e27-37663bf1861e'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Ved </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/07/2024'> 11/07/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Great Product</div> <div class='jdgm-carousel-item__review-body'><p>Heard of people saying it is overpriced, didn't feel like that at all. The quality is really good and price is justified for</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1731006990__golrev51__original.png?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1731006990__golrev51__original.png?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='02f2e8a0-5655-4329-8f18-9bc50baae8e6'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Karthik Kothamddi </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/05/2024'> 11/05/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Loved the Quality</div> <div class='jdgm-carousel-item__review-body'><p>Liked the quality and aesthetics</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1730840616__golrev2__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1730840616__golrev2__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='51c177e9-6d4a-40b5-984a-9e78b327ad1a'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Pradumna Reddy </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/05/2024'> 11/05/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Quick &amp; Neat!</div> <div class='jdgm-carousel-item__review-body'><p>very quick delivery and clean packaging</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1730840463__golrev1__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1730840463__golrev1__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='55385d7c-4ded-4488-a021-9c48bc19b0fd'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Uday Kiran </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/05/2024'> 11/05/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Worth it</div> <div class='jdgm-carousel-item__review-body'><p>Loved the fabric texture and graphic</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1730840286__golrev__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1730840286__golrev__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='fb47902e-a680-4bb3-9f1a-d8aed2a06b54'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Sumeena </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/05/2024'> 11/05/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Best tee</div> <div class='jdgm-carousel-item__review-body'><p>Love the fit. Such a unique colour.</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1730822157__inbound4966860729654727001__original.jpg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1730822157__inbound4966860729654727001__original.jpg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='d2400571-7eef-4228-8fc9-01d1351f4c86'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Aishwarya </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='11/05/2024'> 11/05/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>God of love</div> <div class='jdgm-carousel-item__review-body'><p>One of the best graphic tees in my wardrobe.</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/god-of-love#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> GOD OF LOVE </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='GOD OF LOVE' data-src='https://judgeme.imgix.net/lemonaed/1730822075__inbound1807258892437654009__original.png?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1730822075__inbound1807258892437654009__original.png?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='21de7689-2fc1-484d-9c02-38820663451f'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Jatin Anand </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='10/18/2024'> 10/18/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Unique design</div> <div class='jdgm-carousel-item__review-body'><p>Good product, recommended for anyone looking to try something unique.</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/soaring-high#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> SOARING HIGH </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='SOARING HIGH' data-src='https://judgeme.imgix.net/lemonaed/1729281616__review5__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1729281616__review5__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='e27b9cb6-2305-4921-8116-50dd9a103676'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Abhishek Rai </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='10/18/2024'> 10/18/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Best gift I gave my self for a while</div> <div class='jdgm-carousel-item__review-body'><p>The design packing everything is so sick. The t shirt is also very comfortable.</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/soaring-high#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> SOARING HIGH </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='SOARING HIGH' data-src='https://judgeme.imgix.net/lemonaed/1729281160__review4__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1729281160__review4__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='7ec0b367-5d66-4642-ab0d-cb2878a61b61'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Ayush Khandelwal </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='10/18/2024'> 10/18/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Totally worth it!</div> <div class='jdgm-carousel-item__review-body'><p>Top Notch Quality! I am impressed with the design it showcases plus the look it gives is immaculate!
+<br />Worth Every Penny 🤌🏻</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/soaring-high#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> SOARING HIGH </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='SOARING HIGH' data-src='https://judgeme.imgix.net/lemonaed/1729280204__review3__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1729280204__review3__original.jpeg?auto=format&amp;w=500'/>  </div> </div><div class='jdgm-carousel-item' data-review-id='e06ecaa5-ac44-45ea-bada-491e9e343e99'> <div class='jdgm-carousel-item__left-column'> <div class='jdgm-carousel-item__reviewer-name jdgm-ellipsis'> Vishv Kapoor </div> <div class='jdgm-carousel-item__review-rating' tabindex='0' aria-label='5 stars' role='img'> <span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span><span class='jdgm-star jdgm--on'></span> </div> <div class='jdgm-carousel-item__timestamp jdgm-ellipsis jdgm-spinner' data-time='10/18/2024'> 10/18/2024 </div> </div> <div class='jdgm-carousel-item__review-wrapper'> <div class='jdgm-carousel-item__review'> <div class='jdgm-carousel-item__review-content'> <div class='jdgm-carousel-item__review-title'>Just go for it.</div> <div class='jdgm-carousel-item__review-body'><p>Product quality is very good and looks are very catchy</p></div> </div> </div> <div class='jdgm-carousel-item__reviewer-name-wrapper'> <a class='jdgm-carousel-item__product jdgm-ellipsis' href='/products/soaring-high#judgeme_product_reviews'> <div class='jdgm-carousel-item__product-title jdgm-ellipsis'> SOARING HIGH </div> </a> </div> </div> <div class='jdgm-carousel-item__image-wrapper'>  <img class='jdgm-carousel-item__product-image' alt='SOARING HIGH' data-src='https://judgeme.imgix.net/lemonaed/1729279504__review1__original.jpeg?auto=format&amp;w=250' data-src-retina='https://judgeme.imgix.net/lemonaed/1729279504__review1__original.jpeg?auto=format&amp;w=500'/>  </div> </div></div> </div> <div class='jdgm-carousel__arrows'> <div class='jdgm-carousel__left-arrow' tabindex="0"></div> <div class='jdgm-carousel__right-arrow' tabindex="0"></div> </div> </section> <section>  </section>
+  </div>
+</div>
+
+
+</div></div>
+
+
+</div><div id="shopify-section-template--24894406230302__custom_liquid_pqnYE3" class="shopify-section shopify-section--bordered"><section class="Section Section--spacingNormal" id="section-template--24894406230302__custom_liquid_pqnYE3">
+  <div class="Container"><div class="Liquid">
+      <style>
+.wrapper {
+width: 100%;
+ text-align: center;
+ margin-left: auto;
+ margin-right: auto;
+overflow-x: scroll; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Prevent line breaks */
+            scroll-behavior: smooth; /* Add smooth scrolling behavior */
+}
+.parent {
+ width: 260px;
+ height: 400px;
+ margin: 10px;
+ overflow: hidden;
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ border-radius: 20px;
+}
+
+.child {
+ width: 100%;
+ height: 100%;
+ background-size: cover;
+ background-repeat: no-repeat;
+ transition: all 1.1s;
+ border-radius: 20px;
+}
+
+.parent:hover .child{
+ border-radius: 20px;
+ transform: scale(1.2);
+}
+
+.photo-one {
+  background-image: url(https://cdn.shopify.com/s/files/1/0766/1187/9198/files/soaring_high_new_ad.png?v=1726088578);
+}
+
+.photo-two{
+  background-image: url(https://cdn.shopify.com/s/files/1/0766/1187/9198/files/resilience_model_3_final.png?v=1728198392);
+}
+
+.photo-three{
+  background-image: url(https://cdn.shopify.com/s/files/1/0766/1187/9198/files/bluorng_mockup_2.png?v=1725431927);
+}
+
+.photo-four {
+  background-image: url(https://cdn.shopify.com/s/files/1/0766/1187/9198/files/sOARINGHIGHPRATHAM_1.png?v=1713868233);
+}
+
+.photo-five{
+  background-image: url(https://cdn.shopify.com/s/files/1/0766/1187/9198/files/bluorng_mockup_4.2.png?v=1725431927);
+}
+.wrapper::-webkit-scrollbar {
+            height: 8px;
+
+        }
+
+        .wrapper::-webkit-scrollbar-thumb {
+            background: #000;
+            border-radius: 5px;
+
+        }
+
+        .wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+</style>
+
+<div class="wrapper">
+ <div class="parent">
+  <div class="child photo-one">
+  </div>
+ </div>
+ <div class="parent">
+  <div class="child photo-two">
+  </div>
+ </div>
+ <div class="parent">
+  <div class="child photo-three">
+  </div>
+ </div>
+ <div class="parent">
+  <div class="child photo-four">
+  </div>
+ </div>
+ <div class="parent">
+  <div class="child photo-five">
+  </div>
+ </div>
+</div>
+    </div>
+  </div>
+</section>
+
+</div><div id="shopify-section-template--24894406230302__ss_simple_faq_JU8HmH" class="shopify-section"><div class="rb-faq-shopify-section">
+    <h1 style="text-align: center; padding: 20px 20px 0px 20px;"> Frequently Asked Questions </h1>
+    <div class="rb-faq-container">
+        
+        <div class="rb-faq-container-item">
+            <input style="display:none!important;" type="checkbox" id="tab1" class="tab-toggle">
+            <label for="tab1" class="rb-faq-question">Can I Return My Order?</label>
+            <div class="rb-faq-answer"><p>If you wish to return your product you would have to ship it to us within 7 days of receiving your order with tags and <strong>bear the shipping charges</strong>.If you wish to return the product you should email us at <strong>customer.lemonaed@gmail.com</strong> </p><p><strong>We process refunds in the form of store credit</strong>. Our policy lasts 7 days from the day the product got delivered to you. For further details please go through our refund policy <a href="https://lemonaed.in/policies/refund-policy" target="_blank" title="https://lemonaed.in/policies/refund-policy">https://lemonaed.in/policies/refund-policy</a></p></div>
+        </div>
+        
+        <div class="rb-faq-container-item">
+            <input style="display:none!important;" type="checkbox" id="tab2" class="tab-toggle">
+            <label for="tab2" class="rb-faq-question">Can I Get Free Shipping?</label>
+            <div class="rb-faq-answer"><p>Yes, we provide <strong>free shipping</strong> all across India for <strong>prepaid orders.</strong></p></div>
+        </div>
+        
+        <div class="rb-faq-container-item">
+            <input style="display:none!important;" type="checkbox" id="tab3" class="tab-toggle">
+            <label for="tab3" class="rb-faq-question">Who do You Ship With?</label>
+            <div class="rb-faq-answer"><p>We use Bluedart, Delhivery and Xpressbees, the courier partner may vary according to the delivery address.</p></div>
+        </div>
+        
+        <div class="rb-faq-container-item">
+            <input style="display:none!important;" type="checkbox" id="tab4" class="tab-toggle">
+            <label for="tab4" class="rb-faq-question">Can I Cancel My Order?</label>
+            <div class="rb-faq-answer"><p>We work hard to ensure your order is processed quickly. We do this to make sure you get your order in the quickest time possible. Once you have placed your order we need to be informed within <strong>12 hrs </strong>you can reach out to us on <strong>customer.lemonaed@gmail.com<br/><br/></strong>Cancellation and refund is <strong>not possible</strong> against any pre-paid orders.</p></div>
+        </div>
+        
+        <div class="rb-faq-container-item">
+            <input style="display:none!important;" type="checkbox" id="tab5" class="tab-toggle">
+            <label for="tab5" class="rb-faq-question">Can I Exchange My Order?</label>
+            <div class="rb-faq-answer"><p>We offer direct exchanges in size or any other product, if the new product is of a greater MRP, the balance amount has to be paid by the customer. For further details please check our exchange policies <a href="https://lemonaed.in/policies/refund-policy" target="_blank" title="https://lemonaed.in/policies/refund-policy">https://lemonaed.in/policies/refund-policy</a></p></div>
+        </div>
+        
+    </div>
+  </div>
+  
+
+  <style data-shopify>
+
+    .rb-faq-shopify-section {
+      padding-right:30px;
+      padding-left:30px;
+      margin-bottom:50px
+    }
+
+    .rb-faq-container {
+        margin:auto;
+        max-width:1000px;
+        margin-top:20px;
+    }
+
+    .rb-faq-container-item {
+          border-radius: 8px;
+          margin-bottom:10px;
+          overflow: hidden;
+    }
+
+    .rb-faq-question::after{
+          color: #000000;
+          content: '\276F';
+          transition: all 0.2s ease;
+      }
+
+    .rb-faq-question {
+        border-radius: 8px;
+        display:flex !important;
+        justify-content: space-between;
+        background-color:#ffffff;
+        padding:15px 20px;
+        font-weight: bold;
+        color: #000000;
+        font-size: 1.5rem;
+    }
+
+    .rb-faq-question:hover {
+          color: #252424;
+      }
+    .rb-faq-answer {
+          padding: 0px 20px;
+          position: relative;
+          width: 100%;
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+          visibility: hidden;
+          will-change: height;
+          transform: translateY(25px);
+          transition: all .2s ease;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+    }
+    .tab-toggle:checked ~ .rb-faq-answer {
+      transform: translateY(0);
+      padding: 15px 20px;
+      height:auto;
+      opacity: 1;
+      overflow: unset;
+      visibility: visible;
+      transition: all .3s ease,opacity 1s ease,height .3s ease;
+      color: #000000;
+      background-color: #ffffff;
+    }
+    .tab-toggle:checked ~ .rb-faq-question::after {
+          transform: rotate(90deg);
+    }
+    .tab-toggle{
+          display:none;
+    }
+  </style><style> #shopify-section-template--24894406230302__ss_simple_faq_JU8HmH .rb-faq-question {border-radius: 8px; display: flex !important; justify-content: space-between; background-color: #ffffff; padding: 10px 0px; font-weight: bold; color: #000000; font-size: 12px;} #shopify-section-template--24894406230302__ss_simple_faq_JU8HmH h1 {font-size: 24px; font-weight: 700;} #shopify-section-template--24894406230302__ss_simple_faq_JU8HmH p {font-size: 12px;} </style></div>
+      </main>
+
+      <div id="shopify-section-footer" class="shopify-section shopify-section--footer"><footer id="section-footer" data-section-id="footer" data-section-type="footer" class="Footer " role="contentinfo">
+  <div class="Container"><div class="Footer__Inner"><div class="Footer__Block Footer__Block--newsletter" ><h2 class="Footer__Title Heading u-h6">Newsletter</h2><div class="Footer__Content Rte">
+                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                  </div><form method="post" action="/contact#footer-newsletter" id="footer-newsletter" accept-charset="UTF-8" class="Footer__Newsletter Form"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter">
+                    <input type="email" name="contact[email]" class="Form__Input" aria-label="Enter your email address" placeholder="Enter your email address" required>
+                    <button type="submit" class="Form__Submit Button Button--primary">Subscribe</button></form></div><div class="Footer__Block Footer__Block--text" ><h2 class="Footer__Title Heading u-h6">CRAFTED FOR DAILY UTILITY</h2><div class="Footer__Content Rte">
+                    <p>We specialize in crafting high-quality everyday essentials, meticulously designed to effortlessly blend with your existing wardrobe. Our collections feature durable fabrics, relaxed silhouettes, and versatile color schemes for a timeless aesthetic.</p>
+                  </div>
+</div><div class="Footer__Block Footer__Block--links" ><h2 class="Footer__Title Heading u-h6">Policies</h2>
+
+                  <ul class="Linklist"><li class="Linklist__Item">
+                        <a href="https://lemonaed.in/policies/refund-policy" class="Link Link--primary">Refund Policy</a>
+                      </li><li class="Linklist__Item">
+                        <a href="https://lemonaed.in/policies/privacy-policy" class="Link Link--primary">Privacy Policy</a>
+                      </li><li class="Linklist__Item">
+                        <a href="https://lemonaed.in/policies/terms-of-service" class="Link Link--primary">Terms of Service</a>
+                      </li><li class="Linklist__Item">
+                        <a href="https://lemonaed.in/policies/shipping-policy" class="Link Link--primary">Shipping Policy</a>
+                      </li><li class="Linklist__Item">
+                        <a href="/pages/international-shipping-guidlines" class="Link Link--primary">International Shipping Guidelines</a>
+                      </li><li class="Linklist__Item">
+                        <a href="/pages/contact-information" class="Link Link--primary">Contact Information </a>
+                      </li></ul></div></div><ul class="social-media " role="list"><li> <a href="https://www.instagram.com/lemonaed.in/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Instagram"><svg role="presentation" focusable="false" width="27" height="27" class="icon icon-instagram" viewBox="0 0 24 24"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4c-2.607 0-2.934.011-3.958.058-1.022.046-1.72.209-2.33.446a4.705 4.705 0 0 0-1.7 1.107 4.706 4.706 0 0 0-1.108 1.7c-.237.611-.4 1.31-.446 2.331C2.41 9.066 2.4 9.392 2.4 12c0 2.607.011 2.934.058 3.958.046 1.022.209 1.72.446 2.33a4.706 4.706 0 0 0 1.107 1.7c.534.535 1.07.863 1.7 1.108.611.237 1.309.4 2.33.446 1.025.047 1.352.058 3.959.058s2.934-.011 3.958-.058c1.022-.046 1.72-.209 2.33-.446a4.706 4.706 0 0 0 1.7-1.107 4.706 4.706 0 0 0 1.108-1.7c.237-.611.4-1.31.446-2.33.047-1.025.058-1.352.058-3.959s-.011-2.934-.058-3.958c-.047-1.022-.209-1.72-.446-2.33a4.706 4.706 0 0 0-1.107-1.7 4.705 4.705 0 0 0-1.7-1.108c-.611-.237-1.31-.4-2.331-.446C14.934 2.41 14.608 2.4 12 2.4Zm0 1.73c2.563 0 2.867.01 3.88.056.935.042 1.443.199 1.782.33.448.174.768.382 1.104.718.336.336.544.656.718 1.104.131.338.287.847.33 1.783.046 1.012.056 1.316.056 3.879 0 2.563-.01 2.867-.056 3.88-.043.935-.199 1.444-.33 1.782a2.974 2.974 0 0 1-.719 1.104 2.974 2.974 0 0 1-1.103.718c-.339.131-.847.288-1.783.33-1.012.046-1.316.056-3.88.056-2.563 0-2.866-.01-3.878-.056-.936-.042-1.445-.199-1.783-.33a2.974 2.974 0 0 1-1.104-.718 2.974 2.974 0 0 1-.718-1.104c-.131-.338-.288-.847-.33-1.783-.047-1.012-.056-1.316-.056-3.879 0-2.563.01-2.867.056-3.88.042-.935.199-1.443.33-1.782.174-.448.382-.768.718-1.104a2.974 2.974 0 0 1 1.104-.718c.338-.131.847-.288 1.783-.33C9.133 4.14 9.437 4.13 12 4.13Zm0 11.07a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm0-8.13a4.93 4.93 0 1 0 0 9.86 4.93 4.93 0 0 0 0-9.86Zm6.276-.194a1.152 1.152 0 1 1-2.304 0 1.152 1.152 0 0 1 2.304 0Z" fill="currentColor"></path> </svg></a> </li></ul>
+
+    <div class="Footer__Aside"><div class="Footer__Copyright">
+        <a href="/" class="Footer__StoreName Heading u-h7 Link Link--secondary">© Lemonaed </a>
+      </div>
+      <div class="footer__payment-icons h-stack wrap gap-2">
+
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pi-american_express" viewBox="0 0 38 24" width="38" height="24"><title id="pi-american_express">American Express</title><path fill="#000" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" opacity=".07"></path><path fill="#006FCF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"></path><path fill="#FFF" d="M22.012 19.936v-8.421L37 11.528v2.326l-1.732 1.852L37 17.573v2.375h-2.766l-1.47-1.622-1.46 1.628-9.292-.02Z"></path><path fill="#006FCF" d="M23.013 19.012v-6.57h5.572v1.513h-3.768v1.028h3.678v1.488h-3.678v1.01h3.768v1.531h-5.572Z"></path><path fill="#006FCF" d="m28.557 19.012 3.083-3.289-3.083-3.282h2.386l1.884 2.083 1.89-2.082H37v.051l-3.017 3.23L37 18.92v.093h-2.307l-1.917-2.103-1.898 2.104h-2.321Z"></path><path fill="#FFF" d="M22.71 4.04h3.614l1.269 2.881V4.04h4.46l.77 2.159.771-2.159H37v8.421H19l3.71-8.421Z"></path><path fill="#006FCF" d="m23.395 4.955-2.916 6.566h2l.55-1.315h2.98l.55 1.315h2.05l-2.904-6.566h-2.31Zm.25 3.777.875-2.09.873 2.09h-1.748Z"></path><path fill="#006FCF" d="M28.581 11.52V4.953l2.811.01L32.84 9l1.456-4.046H37v6.565l-1.74.016v-4.51l-1.644 4.494h-1.59L30.35 7.01v4.51h-1.768Z"></path></svg>
+ 
+   <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-google_pay"><title id="pi-google_pay">Google Pay</title><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000" opacity=".07"></path><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#FFF"></path><path d="M18.093 11.976v3.2h-1.018v-7.9h2.691a2.447 2.447 0 0 1 1.747.692 2.28 2.28 0 0 1 .11 3.224l-.11.116c-.47.447-1.098.69-1.747.674l-1.673-.006zm0-3.732v2.788h1.698c.377.012.741-.135 1.005-.404a1.391 1.391 0 0 0-1.005-2.354l-1.698-.03zm6.484 1.348c.65-.03 1.286.188 1.778.613.445.43.682 1.03.65 1.649v3.334h-.969v-.766h-.049a1.93 1.93 0 0 1-1.673.931 2.17 2.17 0 0 1-1.496-.533 1.667 1.667 0 0 1-.613-1.324 1.606 1.606 0 0 1 .613-1.336 2.746 2.746 0 0 1 1.698-.515c.517-.02 1.03.093 1.49.331v-.208a1.134 1.134 0 0 0-.417-.901 1.416 1.416 0 0 0-.98-.368 1.545 1.545 0 0 0-1.319.717l-.895-.564a2.488 2.488 0 0 1 2.182-1.06zM23.29 13.52a.79.79 0 0 0 .337.662c.223.176.5.269.785.263.429-.001.84-.17 1.146-.472.305-.286.478-.685.478-1.103a2.047 2.047 0 0 0-1.324-.374 1.716 1.716 0 0 0-1.03.294.883.883 0 0 0-.392.73zm9.286-3.75l-3.39 7.79h-1.048l1.281-2.728-2.224-5.062h1.103l1.612 3.885 1.569-3.885h1.097z" fill="#5F6368"></path><path d="M13.986 11.284c0-.308-.024-.616-.073-.92h-4.29v1.747h2.451a2.096 2.096 0 0 1-.9 1.373v1.134h1.464a4.433 4.433 0 0 0 1.348-3.334z" fill="#4285F4"></path><path d="M9.629 15.721a4.352 4.352 0 0 0 3.01-1.097l-1.466-1.14a2.752 2.752 0 0 1-4.094-1.44H5.577v1.17a4.53 4.53 0 0 0 4.052 2.507z" fill="#34A853"></path><path d="M7.079 12.05a2.709 2.709 0 0 1 0-1.735v-1.17H5.577a4.505 4.505 0 0 0 0 4.075l1.502-1.17z" fill="#FBBC04"></path><path d="M9.629 8.44a2.452 2.452 0 0 1 1.74.68l1.3-1.293a4.37 4.37 0 0 0-3.065-1.183 4.53 4.53 0 0 0-4.027 2.5l1.502 1.171a2.715 2.715 0 0 1 2.55-1.875z" fill="#EA4335"></path></svg>
+ <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-maestro"><title id="pi-maestro">Maestro</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><circle fill="#EB001B" cx="15" cy="12" r="7"></circle><circle fill="#00A2E5" cx="23" cy="12" r="7"></circle><path fill="#7375CF" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path></svg> <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-master"><title id="pi-master">Mastercard</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><circle fill="#EB001B" cx="15" cy="12" r="7"></circle><circle fill="#F79E1B" cx="23" cy="12" r="7"></circle><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path></svg> <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-paypal"><title id="pi-paypal">PayPal</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"></path><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"></path><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"></path></svg> 
+  <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-visa"><title id="pi-visa">Visa</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"></path></svg></div></div>
+  </div>
+</footer></div>
+    </div>
+   <!-- "snippets/smile-initializer.liquid" was not rendered, the associated app was uninstalled -->
+
+
+<div id="magic-checkout-data-container"><script src="https://magic-plugins.razorpay.com/shopify/magic-shopify.js" crossorigin="anonymous" defer></script><script id="RazorpayMagicCheckoutConfig" type="application/json">{"oneClickCheckoutEnabled":"true","buyNowEnabled":"","config":{"merchant_key":"rzp_live_5gAhPX8wwJHdYA","shouldUseShopId":false,"gTagId":"","gtagLabel":"","clevertapWithShopify":false,"razorpayMagicBtnConfig":{},"checkoutOptions":{"name":""},"cartConfig":{"status":"live","customSelector":"","enableMagicBtn":false,"enableNativeShopifyCheckbox":false,"dual":false},"productConfig":{"status":"live","customSelector":"","enableMagicBtn":false,"enableNativeShopifyCheckbox":false,"dual":false},"customCss":""},"email":"","phone":""}</script></div>
+<!--Gem_Page_Footer_Script-->
+  
+<!--End_Gem_Page_Footer_Script-->
+<!-- Begin Shopify–payment-cart JavaScript -->
+<script type="text/javascript">
+
+  var mid = '5635';
+
+</script>
+<script src="https://checkout-merchant.snapmint.com/js/v1/5635" defer></script>
+<!-- End Shopify-payment JavaScript -->
+<div id="shopify-block-AVFIySTFEaVpmWUFPS__144831480468751239" class="shopify-block shopify-app-block"><!-- BEGIN app snippet: vite-tag -->
+
+
+  <script src="https://cdn.shopify.com/extensions/15d9e352-a1a6-4dee-a5b8-af7bf036ce0e/essential-upsell-302/assets/app-embed-Dt5xyl5q.js" type="module" crossorigin="anonymous"></script>
+  <link rel="modulepreload" href="https://cdn.shopify.com/extensions/15d9e352-a1a6-4dee-a5b8-af7bf036ce0e/essential-upsell-302/assets/stylex-BUNdXQ4s.js" crossorigin="anonymous">
+  <link href="//cdn.shopify.com/extensions/15d9e352-a1a6-4dee-a5b8-af7bf036ce0e/essential-upsell-302/assets/stylex-DFEZgduC.css" rel="stylesheet" type="text/css" media="all" />
+
+<!-- END app snippet -->
+
+<essential-upsell-app-embed
+  upsell-app-data="{&quot;funnels&quot;:[{&quot;id&quot;:&quot;61f57a56-75c7-4e35-adc9-71afda6b83a7&quot;,&quot;content&quot;:{&quot;offerType&quot;:&quot;CROSS_SELL&quot;,&quot;titleText&quot;:&quot;You may also like&quot;,&quot;buttonText&quot;:&quot;ADD TO CART&quot;},&quot;upsell&quot;:{&quot;productsType&quot;:&quot;SPECIFIC&quot;,&quot;discountType&quot;:&quot;PERCENTAGE&quot;,&quot;discountValue&quot;:12,&quot;specificProducts&quot;:[{&quot;shopifyId&quot;:&quot;gid://shopify/Product/8646105104670&quot;,&quot;shopifyHandle&quot;:&quot;rescilience&quot;}]},&quot;design&quot;:{&quot;layoutType&quot;:&quot;STACKED&quot;,&quot;stackedProductsCount&quot;:3,&quot;backgroundType&quot;:&quot;MONOCHROME&quot;,&quot;monochromeBackgroundColor&quot;:&quot;#145c4c&quot;,&quot;gradientBackgroundStartColor&quot;:null,&quot;gradientBackgroundEndColor&quot;:null,&quot;gradientBackgroundAngle&quot;:null,&quot;borderRadius&quot;:8,&quot;borderSize&quot;:0,&quot;borderColor&quot;:&quot;#d4d4d4&quot;,&quot;insideTopSpacing&quot;:10,&quot;insideBottomSpacing&quot;:10,&quot;outsideTopSpacing&quot;:20,&quot;outsideBottomSpacing&quot;:20,&quot;font&quot;:&quot;INHERIT&quot;,&quot;titleSize&quot;:16,&quot;titleColor&quot;:&quot;#035946&quot;,&quot;productTitleSize&quot;:15,&quot;productTitleColor&quot;:&quot;#ffffff&quot;,&quot;productVariantSize&quot;:14,&quot;productVariantColor&quot;:&quot;#ccdfcb&quot;,&quot;productPriceSize&quot;:14,&quot;productPriceColor&quot;:&quot;#df8080&quot;,&quot;discountedPriceSize&quot;:14,&quot;discountedPriceColor&quot;:&quot;#ccdfcb&quot;,&quot;buttonBackgroundColor&quot;:&quot;#ffffff&quot;,&quot;buttonTextSize&quot;:10,&quot;buttonTextColor&quot;:&quot;#0d5645&quot;,&quot;buttonBorderRadius&quot;:4,&quot;navigationIconColor&quot;:&quot;#80b918&quot;,&quot;checkboxIconColor&quot;:null,&quot;checkboxBackgroundColor&quot;:null,&quot;checkboxBorderColor&quot;:null},&quot;placement&quot;:{&quot;type&quot;:&quot;CART_PAGE&quot;,&quot;triggerType&quot;:&quot;ALL&quot;,&quot;cartPagePositionType&quot;:&quot;TOP_OF_THE_CART&quot;,&quot;specificProducts&quot;:[],&quot;specificCollections&quot;:[]}}]}"
+  product-page-product="null"
+  product-page-collection-ids="[]"
+  cart-product-ids="[]"
+  first-shop-product-id="9264528064798"
+  shop-money-format="&lt;span class=money&gt;Rs. {{amount_no_decimals}}&lt;/span&gt;"
+  cart-items='
+[]'
+></essential-upsell-app-embed>
+
+
+</div></body>
+</html>
